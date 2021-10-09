@@ -24,6 +24,7 @@ export enum UserInterfaceClassName {
     MODAL_CONTAINER    = "nor-modal-container",
     MODAL_GROUP_CONTAINER = "nor-modal-group-container",
     LOADER             = "nor-loader",
+    TOGGLE             = "nor-toggle",
     FORM_CONTROLS      = "nor-form-controls",
     MEMBER_LIST        = "nor-member-list"
 
