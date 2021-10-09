@@ -1,0 +1,30 @@
+// Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
+
+$icon-height: 1em;
+
+$ux-black-color: #000000;
+
+// Loader
+
+$loader-background-color   : #00000011;
+$loader-background-opacity : 0.5;
+$loader-icon-color         : $ux-black-color;
+$loader-icon-opacity       : 0.7;
+
+// Fields
+
+$field-border-size       : 1px;
+$field-border-style      : solid;
+$field-border-color      : #00000022;
+
+$field-border-size-invalid  : 3px;
+$field-border-style-invalid : solid;
+$field-border-color-invalid : rgba(255, 0, 0, 0.50);
+
+$field-background-color  : #00000009;
+$field-border            : $field-border-size $field-border-style $field-border-color;
+$field-padding           : 0.5em;
+$field-margin            : 1em 2px;
+$field-border-radius     : 0.5em;
+
+$field-border-invalid    : $field-border-size-invalid $field-border-style-invalid $field-border-color-invalid;

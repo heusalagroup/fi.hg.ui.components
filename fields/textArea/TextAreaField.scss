@@ -1,0 +1,40 @@
+// Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
+@import "src/nor/ui/components/styles/variables";
+
+.text-area-field {
+
+  background-color  : $field-background-color;
+  border            : $field-border;
+  padding           : $field-padding;
+  margin            : $field-margin;
+  border-radius     : $field-border-radius;
+
+  display         : flex;
+  flex-direction  : row;
+  align-items     : stretch;
+  align-content   : stretch;
+  justify-items   : stretch;
+  justify-content : stretch;
+
+  & > .text-area-field-label {
+
+    flex-shrink : 1;
+    padding     : 0.75em 1em 0 0.5em;
+
+  }
+
+  & > .text-area-field-input {
+    flex-grow     : 1;
+    padding       : 0.5em;
+    border        : 0;
+    font-size     : 1.25em;
+    border-radius : 0.25em;
+    max-width     : 100%;
+    min-width     : 0;
+  }
+
+  &.field-state-invalid {
+    border            : $field-border-invalid;
+  }
+
+}
