@@ -4,6 +4,8 @@ import React, {Children} from 'react';
 import './Button.scss';
 import UserInterfaceClassName from "../constants/UserInterfaceClassName";
 import {EventCallback, VoidCallback} from "../../../ts/interfaces/callbacks";
+import { stringifyStyleScheme, StyleScheme } from "../../services/types/StyleScheme";
+import ThemeService from "../../services/ThemeService";
 
 export enum ButtonType {
     DEFAULT = "button",
@@ -21,6 +23,7 @@ export interface ButtonClickCallback {
 export interface ButtonProps {
 
     readonly className  ?: string;
+    readonly style      ?: StyleScheme;
     readonly type        : ButtonType;
     readonly click       : ButtonClickCallback;
     readonly focus      ?: VoidCallback;
@@ -91,11 +94,14 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
             buttonProps.disabled = true;
         }
 
+        const styleScheme = this.props?.style ?? ThemeService.getStyleScheme();
+
         return (
             <button
                 className={
                     UserInterfaceClassName.BUTTON
                     + ` ${UserInterfaceClassName.BUTTON}-count-${childCount}`
+                    + ` ${UserInterfaceClassName.BUTTON}-style-${stringifyStyleScheme(styleScheme)}`
                     + ` ${UserInterfaceClassName.BUTTON}-${enabled ? 'enabled' : 'disabled'}`
                     + (this.props.className ? ` ${this.props.className}` : '')
                 }
