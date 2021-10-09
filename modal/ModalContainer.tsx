@@ -8,12 +8,15 @@ import ModalService from "../../services/ModalService";
 import { stringifyModalType } from "../../services/types/ModalType";
 import { ChangeCallback, EventCallback, VoidCallback } from "../../../ts/interfaces/callbacks";
 import LogService from "../../../ts/LogService";
+import { stringifyStyleScheme, StyleScheme } from "../../services/types/StyleScheme";
+import ThemeService from "../../services/ThemeService";
 
 const LOG = LogService.createLogger('ModalContainer');
 
 export interface ModalContainerProps {
 
     readonly className ?: string;
+    readonly style       ?: StyleScheme;
     readonly modal      : Modal;
     readonly close     ?: ChangeCallback<Modal>;
 
@@ -59,11 +62,14 @@ export class ModalContainer extends React.Component<ModalContainerProps, ModalCo
             containerProps.onClick = this._closeModalCallback;
         }
 
+        const styleScheme = this.props?.style ?? ThemeService.getStyleScheme();
+
         return (
             <div
                 className={
                     UserInterfaceClassName.MODAL_CONTAINER
                     + ' ' + (this.props.className ?? '')
+                    + ` ${UserInterfaceClassName.MODAL_CONTAINER}-style-${stringifyStyleScheme(styleScheme)}`
                     + ' ' + UserInterfaceClassName.MODAL_CONTAINER + '-type-' + (stringifyModalType(type))
                     + ' ' + UserInterfaceClassName.MODAL_CONTAINER + '-overlay-' + (hasOverlay ? 'enabled' : 'disabled')
                 }

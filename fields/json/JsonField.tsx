@@ -9,6 +9,8 @@ import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldSt
 import LogService from "../../../../ts/LogService";
 import { isEqual, trim } from "../../../../ts/modules/lodash";
 import JsonAny, { parseJson, ReadonlyJsonAny } from "../../../../ts/Json";
+import ThemeService from "../../../services/ThemeService";
+import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
 
 const LOG = LogService.createLogger('JsonField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.JSON_FIELD;
@@ -98,20 +100,28 @@ export class JsonField extends React.Component<JsonFieldProps, JsonFieldState> {
         const label       = this.props.label       ?? this.props.model?.label;
         const placeholder = this.props.placeholder ?? this.props.model?.placeholder;
         const fieldState  = stringifyFormFieldState(this._fieldState);
+        const styleScheme = this.props?.style ?? ThemeService.getStyleScheme();
 
         return (
             <label
                 className={
                     `${COMPONENT_CLASS_NAME} ${UserInterfaceClassName.FIELD}`
                     + ' ' + (this.props.className ?? '')
+                    + ` ${UserInterfaceClassName.FIELD}-style-${stringifyStyleScheme(styleScheme)}`
                     + ` ${UserInterfaceClassName.FIELD}-state-${fieldState}`
                 }
             >
                 {label ? (
-                    <span className={COMPONENT_CLASS_NAME+'-label'}>{label}</span>
+                    <span className={
+                        COMPONENT_CLASS_NAME+'-label'
+                        + ` ${UserInterfaceClassName.FIELD}-label`
+                    }>{label}</span>
                 ) : null}
                 <textarea
-                    className={COMPONENT_CLASS_NAME+'-input'}
+                    className={
+                        COMPONENT_CLASS_NAME+'-input'
+                        + ` ${UserInterfaceClassName.FIELD}-input`
+                    }
                     autoComplete="off"
                     placeholder={placeholder}
                     value={this.state.value}

@@ -8,6 +8,8 @@ import FieldProps from '../FieldProps';
 import LogService from "../../../../ts/LogService";
 import { isSafeInteger, trim } from "../../../../ts/modules/lodash";
 import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
+import ThemeService from "../../../services/ThemeService";
+import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
 
 const LOG = LogService.createLogger('IntegerField');
 const DEFAULT_PLACEHOLDER = '123';
@@ -87,20 +89,28 @@ export class IntegerField extends React.Component<IntegerFieldProps, IntegerFiel
         const label       = this.props.label       ?? this.props.model?.label;
         const placeholder = this.props.placeholder ?? this.props.model?.placeholder ?? DEFAULT_PLACEHOLDER;
         const fieldState  = stringifyFormFieldState(this._fieldState);
+        const styleScheme = this.props?.style ?? ThemeService.getStyleScheme();
 
         return (
             <label
                 className={
                     `${COMPONENT_CLASS_NAME} ${UserInterfaceClassName.FIELD}`
                     + ' ' + (this.props.className ?? '')
+                    + ` ${UserInterfaceClassName.FIELD}-style-${stringifyStyleScheme(styleScheme)}`
                     + ` ${UserInterfaceClassName.FIELD}-state-${fieldState}`
                 }
             >
                 {label ? (
-                    <span className={COMPONENT_CLASS_NAME+'-label'}>{label}</span>
+                    <span className={
+                        COMPONENT_CLASS_NAME+'-label'
+                        + ` ${UserInterfaceClassName.FIELD}-label`
+                    }>{label}</span>
                 ) : null}
                 <input
-                    className={COMPONENT_CLASS_NAME+'-input'}
+                    className={
+                        COMPONENT_CLASS_NAME+'-input'
+                        + ` ${UserInterfaceClassName.FIELD}-input`
+                    }
                     type={COMPONENT_INPUT_TYPE}
                     autoComplete="off"
                     placeholder={placeholder}

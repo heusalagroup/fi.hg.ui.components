@@ -7,6 +7,8 @@ import CheckboxFieldModel from "../../types/items/CheckboxFieldModel";
 import FieldProps from '../FieldProps';
 import LogService from "../../../../ts/LogService";
 import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
+import ThemeService from "../../../services/ThemeService";
+import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
 
 const LOG = LogService.createLogger('CheckboxField');
 
@@ -102,25 +104,33 @@ export class CheckboxField extends React.Component<CheckboxFieldProps, CheckboxF
 
         const label = this.props.label ?? this.props.model?.label;
         const fieldState = stringifyFormFieldState( this._fieldState );
+        const styleScheme = this.props?.style ?? ThemeService.getStyleScheme();
 
         return (
             <label
                 className={
                     UserInterfaceClassName.CHECKBOX_FIELD + ' ' + UserInterfaceClassName.FIELD
+                    + ` ${UserInterfaceClassName.FIELD}-style-${stringifyStyleScheme(styleScheme)}`
                     + ` ${UserInterfaceClassName.FIELD}-state-${fieldState}`
                 }
                 onClick={this._toggleCallback}
             >
                 <input
                     ref={this._inputRef}
-                    className={UserInterfaceClassName.CHECKBOX_FIELD+'-input'}
+                    className={
+                        UserInterfaceClassName.CHECKBOX_FIELD+'-input'
+                        + ` ${UserInterfaceClassName.FIELD}-input`
+                    }
                     type="checkbox"
                     autoComplete="off"
                     checked={this.state.value}
                     onChange={this._handleChangeCallback}
                 />
                 {label ? (
-                    <span className={UserInterfaceClassName.CHECKBOX_FIELD+'-label'}>{label}</span>
+                    <span className={
+                        UserInterfaceClassName.CHECKBOX_FIELD+'-label'
+                        + ` ${UserInterfaceClassName.FIELD}-label`
+                    }>{label}</span>
                 ) : null}
                 {this.props.children}
             </label>

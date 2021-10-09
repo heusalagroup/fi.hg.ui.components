@@ -1,5 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
+@import "src/nor/ui/styles/index";
+
 .button {
 
   font-size        : 1.2em;
@@ -21,21 +23,5 @@
   &.button-count-1 > .icon:last-child {
     margin-right: 0;
   }
-
-}
-
-.button.button-style-FLAT {
-
-  background-color : #0000000f;
-  border           : none;
-
-}
-
-.button.button-style-NEUMORPHISM {
-
-  background-color : #EFEEEE;
-  box-shadow       : 2px 2px 2px #D1CDC750, 2px 2px 2px #FFFFFF50;
-  border           : 1px solid #FFFFFF20;
-  border-radius    : 16px;
 
 }

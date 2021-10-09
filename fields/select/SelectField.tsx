@@ -11,6 +11,8 @@ import Popup from "../../popup/Popup";
 import {EventCallback, VoidCallback} from "../../../../ts/interfaces/callbacks";
 import Button from "../../button/Button";
 import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
+import ThemeService from "../../../services/ThemeService";
+import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
 
 const LOG = LogService.createLogger('SelectField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.SELECT_FIELD;
@@ -113,6 +115,7 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
         const selectedItemLabel : string = selectedItem?.label ?? '';
 
         const fieldState        : string = stringifyFormFieldState( this._fieldState );
+        const styleScheme = this.props?.style ?? ThemeService.getStyleScheme();
 
         LOG.debug(`${this.getIdentifier()}: render: selectedItem = `, selectedItem, selectedItemLabel);
 
@@ -121,11 +124,15 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
                 className={
                     `${COMPONENT_CLASS_NAME} ${UserInterfaceClassName.FIELD}`
                     + ' ' + (this.props.className ?? '')
+                    + ` ${UserInterfaceClassName.FIELD}-style-${stringifyStyleScheme(styleScheme)}`
                     + ` ${UserInterfaceClassName.FIELD}-state-${fieldState}`
                 }
             >
 
-                <label className={COMPONENT_CLASS_NAME + '-label'}>
+                <label className={
+                    COMPONENT_CLASS_NAME + '-label'
+                    + ` ${UserInterfaceClassName.FIELD}-label`
+                }>
 
                     {label ? (
                         <span className={COMPONENT_CLASS_NAME+'-label'}>{label}</span>
@@ -133,7 +140,10 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
 
                     <input
                        ref={this._inputRef}
-                       className={COMPONENT_CLASS_NAME+'-input'}
+                       className={
+                           COMPONENT_CLASS_NAME+'-input'
+                           + ` ${UserInterfaceClassName.FIELD}-input`
+                       }
                        type="text"
                        autoComplete="off"
                        placeholder={placeholder}

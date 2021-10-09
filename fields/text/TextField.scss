@@ -4,11 +4,8 @@
 
 .text-field {
 
-  background-color  : $field-background-color;
-  border            : $field-border;
   padding           : $field-padding;
   margin            : $field-margin;
-  border-radius     : $field-border-radius;
 
   display           : flex;
   flex-direction    : row;
@@ -30,10 +27,6 @@
     border-radius : 0.25em;
     max-width     : 100%;
     min-width     : 0;
-  }
-
-  &.field-state-invalid {
-    border            : $field-border-invalid;
   }
 
 }

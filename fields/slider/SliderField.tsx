@@ -9,6 +9,8 @@ import LogService from "../../../../ts/LogService";
 import {find, map} from "../../../../ts/modules/lodash";
 import {EventCallback} from "../../../../ts/interfaces/callbacks";
 import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
+import ThemeService from "../../../services/ThemeService";
+import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
 
 const LOG = LogService.createLogger('SliderField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.SLIDER_FIELD;
@@ -106,19 +108,28 @@ export class SliderField extends React.Component<SliderFieldProps<any>, SliderFi
         const itemCount = selectItems.length;
         const fieldState  = stringifyFormFieldState( this._fieldState );
 
+        const styleScheme = this.props?.style ?? ThemeService.getStyleScheme();
+
         return (
             <div className={
                 COMPONENT_CLASS_NAME
                 + ' ' + (this.props.className ?? '')
                 + ' ' + UserInterfaceClassName.FIELD
+                + ` ${UserInterfaceClassName.FIELD}-style-${stringifyStyleScheme(styleScheme)}`
                 + ` ${UserInterfaceClassName.FIELD}-state-${fieldState}`
             }>
 
                 {label ? (
-                    <label className={COMPONENT_CLASS_NAME+'-label'}>{label}</label>
+                    <label className={
+                        COMPONENT_CLASS_NAME+'-label'
+                        + ` ${UserInterfaceClassName.FIELD}-label`
+                    }>{label}</label>
                 ) : null}
 
-                <div className={COMPONENT_CLASS_NAME + '-options'}>
+                <div className={
+                    COMPONENT_CLASS_NAME + '-options'
+                    + ` ${UserInterfaceClassName.FIELD}-options`
+                }>
                     {map(selectItems, (item : SelectFieldItem<any>, itemIndex: number) => {
 
                         const itemLabel    : string  = item?.label ?? '';
@@ -135,17 +146,27 @@ export class SliderField extends React.Component<SliderFieldProps<any>, SliderFi
                         return (
                             <label
                                 key={`slider-${this._id}-label-${itemIndex}`}
-                                className={COMPONENT_CLASS_NAME + '-option'}
+                                className={
+                                    COMPONENT_CLASS_NAME + '-option'
+                                    + ` ${UserInterfaceClassName.FIELD}-option`
+                                }
                             >
 
-                                <div className={COMPONENT_CLASS_NAME + '-option-input'}>
+                                <div className={
+                                    COMPONENT_CLASS_NAME + '-option-input'
+                                    + ` ${UserInterfaceClassName.FIELD}-option-input`
+                                }>
                                     <div className={
                                         COMPONENT_CLASS_NAME + '-option-input-fill '
-                                        + COMPONENT_CLASS_NAME + '-option-input-fill-with-'
+                                        + ` ${UserInterfaceClassName.FIELD}-option-input-fill`
+                                        + ' ' + COMPONENT_CLASS_NAME + '-option-input-fill-with-'
                                             + (itemIndex !== 0 ? 'line' : 'no-line')
                                     } />
                                     <input
-                                        className={COMPONENT_CLASS_NAME+'-option-input-element'}
+                                        className={
+                                            COMPONENT_CLASS_NAME+'-option-input-element'
+                                            + ` ${UserInterfaceClassName.FIELD}-option-input-element`
+                                        }
                                         type="radio"
                                         name={sliderName}
                                         value={`${itemIndex}`}
@@ -155,14 +176,21 @@ export class SliderField extends React.Component<SliderFieldProps<any>, SliderFi
                                     />
                                     <div className={
                                         COMPONENT_CLASS_NAME + '-option-input-fill '
-                                        + COMPONENT_CLASS_NAME + '-option-input-fill-with-'
+                                        + ` ${UserInterfaceClassName.FIELD}-option-input-fill`
+                                        + ' ' + COMPONENT_CLASS_NAME + '-option-input-fill-with-'
                                         + (itemIndex !== itemCount - 1 ? 'line' : 'no-line')
                                     } />
                                 </div>
 
-                                <div className={COMPONENT_CLASS_NAME + '-option-label'}>
+                                <div className={
+                                    COMPONENT_CLASS_NAME + '-option-label'
+                                    + ` ${UserInterfaceClassName.FIELD}-option-label`
+                                }>
                                     {itemLabel ? (
-                                        <span className={COMPONENT_CLASS_NAME+'-option-label-text'}>{itemLabel}</span>
+                                        <span className={
+                                            COMPONENT_CLASS_NAME+'-option-label-text'
+                                            + ` ${UserInterfaceClassName.FIELD}-option-label-text`
+                                        }>{itemLabel}</span>
                                     ) : null}
                                 </div>
 

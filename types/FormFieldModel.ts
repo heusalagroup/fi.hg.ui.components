@@ -3,15 +3,17 @@
 import {
     isBooleanOrUndefined,
     isNumberOrUndefined,
-    isStringOrUndefined
+    isStringOrUndefined, isUndefined
 } from "../../../ts/modules/lodash";
 import FormItemModel from "./FormItemModel";
 import {FormFieldType, isFormFieldType} from "./FormFieldType";
+import { isStyleScheme, StyleScheme } from "../../services/types/StyleScheme";
 
 export interface FormFieldModel extends FormItemModel {
 
     readonly type        : FormFieldType;
     readonly key         ?: string;
+    readonly style       ?: StyleScheme;
     readonly label       ?: string;
     readonly placeholder ?: string;
     readonly required    ?: boolean;
@@ -27,6 +29,7 @@ export function isFormFieldModel (value: any) : value is FormFieldModel {
         !!value
         && isFormFieldType(value?.type)
         && isStringOrUndefined(value?.key)
+        && ( isUndefined(value?.style) || isStyleScheme(value?.style) )
         && isStringOrUndefined(value?.label)
         && isStringOrUndefined(value?.placeholder)
         && isBooleanOrUndefined(value?.required)
