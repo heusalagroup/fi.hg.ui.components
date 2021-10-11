@@ -16,6 +16,7 @@ export enum UserInterfaceClassName {
     JSON_FIELD         = "json-field",
     TEXT_AREA_FIELD    = "text-area-field",
     INTEGER_FIELD      = "integer-field",
+    LINK_BUTTON        = "link-button",
     BUTTON             = "button",
     DRAGGABLE          = "draggable",
     DROP_ZONE          = "drop-zone",

@@ -6,7 +6,7 @@ import UserInterfaceClassName from "../constants/UserInterfaceClassName";
 import FormModel from "../types/FormModel";
 import FormFieldModel, { isFormFieldModel } from "../types/FormFieldModel";
 import map from 'lodash/map';
-import Button, { ButtonClickCallback, ButtonType } from "../button/Button";
+import Button, { ButtonClickCallback} from "../button/Button";
 import FormUtils from "../fields/FormUtils";
 import { FieldChangeCallback } from "../fields/FieldProps";
 import { every, filter, get, keys, set } from "../../../ts/modules/lodash";
@@ -15,6 +15,7 @@ import FormItem from "../types/FormItem";
 import PageBreakModel from "../types/items/PageBreakModel";
 import { VoidCallback } from "../../../ts/interfaces/callbacks";
 import FormFieldState from "../types/FormFieldState";
+import { ButtonType } from "../button/types/ButtonType";
 
 const LOG = LogService.createLogger('Form');
 
