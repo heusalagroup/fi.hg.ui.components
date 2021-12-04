@@ -31,19 +31,19 @@ in a NodeJS or webpack project.
 Recommended way to initialize your project is like this:
 
 ```
-mkdir -p src/nor/ui
+mkdir -p src/fi/nor/ui
 
-git submodule add git@github.com:sendanor/typescript.git src/nor/ts
-git config -f .gitmodules submodule.src/nor/ts.branch main
+git submodule add git@github.com:sendanor/typescript.git src/fi/nor/ts
+git config -f .gitmodules submodule.src/fi/nor/ts.branch main
 
-git submodule add git@github.com:sendanor/ui-services.git src/nor/ui/services
-git config -f .gitmodules submodule.src/nor/ui/services.branch main
+git submodule add git@github.com:sendanor/ui-services.git src/fi/nor/ui/services
+git config -f .gitmodules submodule.src/fi/nor/ui/services.branch main
 
-git submodule add git@github.com:sendanor/ui-styles.git src/nor/ui/styles
-git config -f .gitmodules submodule.src/nor/ui/styles.branch main
+git submodule add git@github.com:sendanor/ui-styles.git src/fi/nor/ui/styles
+git config -f .gitmodules submodule.src/fi/nor/ui/styles.branch main
 
-git submodule add git@github.com:sendanor/ui-components.git src/nor/ui/components
-git config -f .gitmodules submodule.src/nor/ui/components.branch main
+git submodule add git@github.com:sendanor/ui-components.git src/fi/nor/ui/components
+git config -f .gitmodules submodule.src/fi/nor/ui/components.branch main
 ```
 
 Only required dependency is to [the Lodash library](https://lodash.com/):
