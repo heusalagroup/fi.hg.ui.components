@@ -1,9 +1,12 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import { Switch, useHistory } from "react-router-dom";
+import REACT_ROUTER_DOM from "react-router-dom";
 import * as React from "react";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import RouteService, { RouteServiceEvent } from "../../services/RouteService";
+import LogService from "../../../ts/LogService";
+
+const LOG = LogService.createLogger('HistoryServiceSwitch');
 
 /**
  * Enables `RouteService.setRoute()` functionality with react-router-dom's switch.
@@ -13,31 +16,64 @@ import RouteService, { RouteServiceEvent } from "../../services/RouteService";
  */
 export function HistoryServiceSwitch (props: {children: any}): any {
 
+    const hasNavigate : boolean = !!((REACT_ROUTER_DOM as any)?.useNavigate);
+    const hasHistory  : boolean = !!((REACT_ROUTER_DOM as any)?.useHistory);
+    const hasSwitch   : boolean = !!((REACT_ROUTER_DOM as any)?.Switch);
+
+    const useNavigate = hasNavigate ? (REACT_ROUTER_DOM as any)?.useNavigate : (() => null);
+    const useHistory  = hasHistory  ? (REACT_ROUTER_DOM as any)?.useHistory  : (() => null);
+    const Switch      = hasSwitch   ? (REACT_ROUTER_DOM as any)?.Switch      : null;
+
     const history = useHistory();
+    const navigate = useNavigate();
 
-    useEffect(() => {
-
-        const prevRoute = RouteService.getNextHistory();
-
-        if ( prevRoute ) {
-            history.push(prevRoute);
+    const pushRoute = useCallback((route: string) => {
+        if (hasHistory) {
+            history.push(route);
+        } else if (hasNavigate) {
+            navigate.push(route);
+        } else {
+            LOG.warn(`Module react-router-dom did not have useNavigate nor useHistory`);
         }
+    }, [
+                                      hasHistory,
+                                      history,
+                                      hasNavigate,
+                                      navigate
+                                  ] );
 
-        return RouteService.on(
-            RouteServiceEvent.PUSH_HISTORY,
-            (
-                eventName,
-                routeName: string
-            ) => {
-                history.push(routeName);
+    useEffect(
+        () => {
+
+            const prevRoute = RouteService.getNextHistory();
+
+            if ( prevRoute ) {
+                pushRoute(prevRoute);
             }
-        );
 
-    }, [ history ]);
+            return RouteService.on(
+                RouteServiceEvent.PUSH_HISTORY,
+                (
+                    eventName,
+                    routeName: string
+                ) => {
+                    pushRoute(routeName);
+                }
+            );
 
-    return (
-        <Switch>{props.children}</Switch>
+        },
+        [
+            pushRoute
+        ]
     );
+
+    if (!Switch) {
+        return <>{props.children}</>;
+    } else {
+        return (
+            <Switch>{props.children}</Switch>
+        );
+    }
 
 }
 
