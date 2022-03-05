@@ -1,15 +1,15 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './TextField.scss';
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import TextFieldModel from "../../types/items/TextFieldModel";
-import FieldProps from '../FieldProps';
-import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import LogService from "../../../../core/LogService";
+import { ChangeEvent , Component } from 'react';
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { TextFieldModel } from "../../types/items/TextFieldModel";
+import { FieldProps } from '../FieldProps';
+import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { LogService } from "../../../../core/LogService";
 import { trim } from "../../../../core/modules/lodash";
-import ThemeService from "../../../services/ThemeService";
+import { ThemeService } from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
+import './TextField.scss';
 
 const LOG = LogService.createLogger('TextField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.TEXT_FIELD;
@@ -25,10 +25,10 @@ export interface TextFieldProps extends FieldProps<TextFieldModel, string> {
 }
 
 export interface OnChangeCallback<T> {
-    (event: React.ChangeEvent<T>): void;
+    (event: ChangeEvent<T>): void;
 }
 
-export class TextField extends React.Component<TextFieldProps, TextFieldState> {
+export class TextField extends Component<TextFieldProps, TextFieldState> {
 
     private readonly _handleChangeCallback : OnChangeCallback<HTMLInputElement>;
 
@@ -240,7 +240,7 @@ export class TextField extends React.Component<TextFieldProps, TextFieldState> {
         }
     }
 
-    private _onChange (event: React.ChangeEvent<HTMLInputElement>) {
+    private _onChange (event: ChangeEvent<HTMLInputElement>) {
 
         if (event) {
             event.preventDefault();
@@ -263,4 +263,4 @@ export class TextField extends React.Component<TextFieldProps, TextFieldState> {
 
 }
 
-export default TextField;
+

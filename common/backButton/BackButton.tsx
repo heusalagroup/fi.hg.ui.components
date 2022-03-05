@@ -1,8 +1,7 @@
 // Copyright (c) 2022. Heusala Group Oy <info@heusalagroup.fi>. All rights reserved.
 
 import { useNavigate } from "react-router-dom";
-import react, { ReactNode, useCallback } from "react";
-
+import { MouseEvent, ReactNode, useCallback } from "react";
 import { BACK_BUTTON_CLASS_NAME, BUTTON_CLASS_NAME } from "../../../constants/hgClassName";
 
 export interface BackButtonProps {
@@ -16,7 +15,7 @@ export function BackButton (props: BackButtonProps) {
     const navigate = useNavigate();
 
     const onClick = useCallback(
-        (event : react.MouseEvent<HTMLButtonElement>) => {
+        (event : MouseEvent<HTMLButtonElement>) => {
 
             if (event) {
                 event.stopPropagation();
@@ -44,4 +43,4 @@ export function BackButton (props: BackButtonProps) {
 
 }
 
-export default BackButton;
+

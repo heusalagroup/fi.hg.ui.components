@@ -1,8 +1,8 @@
 // Copyright (c) 2020-2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
+import { Component } from 'react';
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
 import './Icon.scss';
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
 
 export enum IconType {
 
@@ -23,7 +23,7 @@ export interface IconState {
 
 }
 
-export class Icon extends React.Component<IconProps, IconState> {
+export class Icon extends Component<IconProps, IconState> {
 
     static Type = IconType;
 
@@ -65,4 +65,4 @@ export class Icon extends React.Component<IconProps, IconState> {
 
 }
 
-export default Icon;
+

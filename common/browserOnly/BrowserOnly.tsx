@@ -1,11 +1,11 @@
 // Copyright (c) 2022. Heusala Group Oy <info@heusalagroup.fi>. All rights reserved.
 
-import React, { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 /**
  * Prints child elements only in the browser context, e.g. not in the initial server side SSR.
  */
-export function BrowserOnly (props: {children: React.ReactNode}) {
+export function BrowserOnly (props: {children: ReactNode}) {
 
     const [showChild, setShowChild] = useState<boolean>(false);
 
@@ -19,5 +19,3 @@ export function BrowserOnly (props: {children: React.ReactNode}) {
     return <>{showChild ? props.children : null}</>;
 
 }
-
-export default BrowserOnly;

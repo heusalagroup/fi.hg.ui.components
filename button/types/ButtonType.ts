@@ -6,4 +6,4 @@ export enum ButtonType {
     SUBMIT  = "submit"
 }
 
-export default ButtonType;
+

@@ -1,15 +1,15 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './EmailField.scss';
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import EmailFieldModel from "../../types/items/EmailFieldModel";
-import FieldProps from '../FieldProps';
-import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import LogService from "../../../../core/LogService";
+import { Component, ChangeEvent } from 'react';
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { EmailFieldModel } from "../../types/items/EmailFieldModel";
+import { FieldProps } from '../FieldProps';
+import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { LogService } from "../../../../core/LogService";
 import { trim } from "../../../../core/modules/lodash";
-import ThemeService from "../../../services/ThemeService";
+import { ThemeService } from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
+import './EmailField.scss';
 
 const LOG = LogService.createLogger('EmailField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.EMAIL_FIELD;
@@ -25,10 +25,10 @@ export interface EmailFieldProps extends FieldProps<EmailFieldModel, string> {
 }
 
 export interface OnChangeCallback<T> {
-    (event: React.ChangeEvent<T>): void;
+    (event: ChangeEvent<T>): void;
 }
 
-export class EmailField extends React.Component<EmailFieldProps, EmailFieldState> {
+export class EmailField extends Component<EmailFieldProps, EmailFieldState> {
 
     private readonly _handleChangeCallback : OnChangeCallback<HTMLInputElement>;
 
@@ -231,7 +231,7 @@ export class EmailField extends React.Component<EmailFieldProps, EmailFieldState
         }
     }
 
-    private _onChange (event: React.ChangeEvent<HTMLInputElement>) {
+    private _onChange (event: ChangeEvent<HTMLInputElement>) {
 
         if (event) {
             event.preventDefault();
@@ -254,4 +254,4 @@ export class EmailField extends React.Component<EmailFieldProps, EmailFieldState
 
 }
 
-export default EmailField;
+

@@ -1,21 +1,20 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './Form.scss';
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import FormModel from "../types/FormModel";
-import FormFieldModel, { isFormFieldModel } from "../types/FormFieldModel";
-import map from 'lodash/map';
-import Button, { ButtonClickCallback} from "../button/Button";
-import FormUtils from "../fields/FormUtils";
+import { Component } from 'react';
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
+import { FormModel } from "../types/FormModel";
+import { FormFieldModel,  isFormFieldModel } from "../types/FormFieldModel";
+import { Button,  ButtonClickCallback} from "../button/Button";
+import { FormUtils } from "../fields/FormUtils";
 import { FieldChangeCallback } from "../fields/FieldProps";
-import { every, filter, get, keys, set } from "../../../core/modules/lodash";
-import LogService from "../../../core/LogService";
-import FormItem from "../types/FormItem";
-import PageBreakModel from "../types/items/PageBreakModel";
+import { every, filter, get, keys, map, set } from "../../../core/modules/lodash";
+import { LogService } from "../../../core/LogService";
+import { FormItem } from "../types/FormItem";
+import { PageBreakModel } from "../types/items/PageBreakModel";
 import { VoidCallback } from "../../../core/interfaces/callbacks";
-import FormFieldState from "../types/FormFieldState";
+import { FormFieldState } from "../types/FormFieldState";
 import { ButtonType } from "../button/types/ButtonType";
+import './Form.scss';
 
 const LOG = LogService.createLogger('Form');
 
@@ -41,7 +40,7 @@ export interface FormProps<ValueT> {
 
 }
 
-export class Form extends React.Component<FormProps<any>, FormState> {
+export class Form extends Component<FormProps<any>, FormState> {
 
     private readonly _cancelCallback    : ButtonClickCallback;
     private readonly _submitCallback    : ButtonClickCallback;
@@ -312,4 +311,4 @@ export class Form extends React.Component<FormProps<any>, FormState> {
 
 }
 
-export default Form;
+

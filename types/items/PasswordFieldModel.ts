@@ -1,7 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType from "../FormItemType";
-import FormFieldModel, { isFormFieldModel } from "../FormFieldModel";
+import { FormItemType } from "../FormItemType";
+import { FormFieldModel,  isFormFieldModel } from "../FormFieldModel";
 
 export interface PasswordFieldModel extends FormFieldModel {
 
@@ -25,4 +25,4 @@ export function parsePasswordFieldModel (value: any): PasswordFieldModel | undef
     return undefined;
 }
 
-export default PasswordFieldModel;
+

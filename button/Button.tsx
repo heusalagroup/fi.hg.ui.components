@@ -1,13 +1,13 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React, { Children } from 'react';
-import './Button.scss';
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
+import { KeyboardEvent, Component, Children, MouseEvent, RefObject } from 'react';
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
 import { EventCallback, VoidCallback } from "../../../core/interfaces/callbacks";
 import { stringifyStyleScheme, StyleScheme } from "../../services/types/StyleScheme";
-import ThemeService from "../../services/ThemeService";
-import ButtonType from "./types/ButtonType";
-import ButtonStyle from "./types/ButtonStyle";
+import { ThemeService } from "../../services/ThemeService";
+import { ButtonType } from "./types/ButtonType";
+import { ButtonStyle } from "./types/ButtonStyle";
+import './Button.scss';
 
 export interface ButtonState {
 }
@@ -25,17 +25,17 @@ export interface ButtonProps {
     readonly click        : ButtonClickCallback;
     readonly focus       ?: VoidCallback;
     readonly blur        ?: VoidCallback;
-    readonly keyDown     ?: EventCallback<React.KeyboardEvent>;
-    readonly buttonRef   ?: React.RefObject<HTMLButtonElement>;
+    readonly keyDown     ?: EventCallback<KeyboardEvent>;
+    readonly buttonRef   ?: RefObject<HTMLButtonElement>;
     readonly enabled     ?: boolean;
 
 }
 
 export interface OnClickCallback<T> {
-    (event: React.MouseEvent<T>) : void;
+    (event: MouseEvent<T>) : void;
 }
 
-export class Button extends React.Component<ButtonProps, ButtonState> {
+export class Button extends Component<ButtonProps, ButtonState> {
 
     public static defaultProps : Partial<ButtonProps> = {
         type: ButtonType.DEFAULT
@@ -112,7 +112,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
     }
 
 
-    private _onClick (event: React.MouseEvent<HTMLButtonElement>) {
+    private _onClick (event: MouseEvent<HTMLButtonElement>) {
 
         if (event) {
             event.preventDefault();
@@ -131,4 +131,4 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
 
 }
 
-export default Button;
+

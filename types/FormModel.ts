@@ -1,6 +1,6 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItem, {isFormItem} from "./FormItem";
+import { FormItem, isFormItem} from "./FormItem";
 import { isArrayOf, isString, isStringOrUndefined } from "../../../core/modules/lodash";
 
 export interface FormModel {
@@ -34,4 +34,4 @@ export function parseFormModel (value: any): FormModel | undefined {
     return undefined;
 }
 
-export default FormModel;
+

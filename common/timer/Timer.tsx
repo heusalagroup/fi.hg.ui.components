@@ -1,14 +1,15 @@
+
 import { useEffect, useState } from "react";
-import padStart from "lodash/padStart";
-import "./Timer.scss";
 import { TIMER_CLASS_NAME } from "../../../constants/hgClassName";
+import { padStart } from "../../../../core/modules/lodash";
+import "./Timer.scss";
 
 /**
  * @FIXME Change this use global TimerService instead of it's own timer
  * @param value
  * @constructor
  */
-export default function Timer ({value}:{value:number}) {
+export function Timer ({value}:{value:number}) {
 
     let [now, setNow] = useState<number>(Date.now());
 

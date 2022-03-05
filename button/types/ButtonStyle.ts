@@ -61,4 +61,4 @@ export function parseButtonStyle (value: any): ButtonStyle | undefined {
 }
 
 
-export default ButtonStyle;
+

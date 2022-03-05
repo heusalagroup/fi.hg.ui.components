@@ -1,8 +1,8 @@
 // Copyright (c) 2022. Heusala Group Oy <info@heusalagroup.fi>. All rights reserved.
 
 import { useLayoutEffect } from "react";
-import BrowserOnly from "../browserOnly/BrowserOnly";
-import LogService from "../../../../../hg/core/LogService";
+import { BrowserOnly } from "../browserOnly/BrowserOnly";
+import { LogService } from "../../../../../hg/core/LogService";
 
 const LOG = LogService.createLogger('ScrollToTop');
 
@@ -30,4 +30,4 @@ export function ScrollToTop () {
 
 }
 
-export default ScrollToTop;
+

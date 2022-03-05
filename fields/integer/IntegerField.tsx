@@ -1,15 +1,15 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './IntegerField.scss';
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import IntegerFieldModel from "../../types/items/IntegerFieldModel";
-import FieldProps from '../FieldProps';
-import LogService from "../../../../core/LogService";
+import { ChangeEvent, Component } from 'react';
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { IntegerFieldModel } from "../../types/items/IntegerFieldModel";
+import { FieldProps } from '../FieldProps';
+import { LogService } from "../../../../core/LogService";
 import { isSafeInteger, trim } from "../../../../core/modules/lodash";
-import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import ThemeService from "../../../services/ThemeService";
+import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { ThemeService } from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
+import './IntegerField.scss';
 
 const LOG = LogService.createLogger('IntegerField');
 const DEFAULT_PLACEHOLDER = '123';
@@ -26,10 +26,10 @@ export interface IntegerFieldProps extends FieldProps<IntegerFieldModel, number>
 }
 
 export interface OnChangeCallback<T> {
-    (event: React.ChangeEvent<T>): void;
+    (event: ChangeEvent<T>): void;
 }
 
-export class IntegerField extends React.Component<IntegerFieldProps, IntegerFieldState> {
+export class IntegerField extends Component<IntegerFieldProps, IntegerFieldState> {
 
     private readonly _handleChangeCallback : OnChangeCallback<HTMLInputElement>;
 
@@ -228,7 +228,7 @@ export class IntegerField extends React.Component<IntegerFieldProps, IntegerFiel
         }
     }
 
-    private _onChange (event: React.ChangeEvent<HTMLInputElement>) {
+    private _onChange (event: ChangeEvent<HTMLInputElement>) {
 
         if (event) {
             event.preventDefault();
@@ -276,4 +276,4 @@ export class IntegerField extends React.Component<IntegerFieldProps, IntegerFiel
 
 }
 
-export default IntegerField;
+

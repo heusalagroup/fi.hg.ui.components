@@ -2,7 +2,7 @@
 
 import { BACK_LINK_CLASS_NAME } from "../../../constants/hgClassName";
 import { useNavigate } from "react-router-dom";
-import react, { ReactNode, useCallback } from "react";
+import { ReactNode, useCallback, MouseEvent } from "react";
 
 export interface BackLinkProps {
     readonly className ?: string;
@@ -15,7 +15,7 @@ export function BackLink (props: BackLinkProps) {
     const navigate = useNavigate();
 
     const onClick = useCallback(
-        (event : react.MouseEvent<HTMLAnchorElement>) => {
+        (event : MouseEvent<HTMLAnchorElement>) => {
 
             if (event) {
                 event.stopPropagation();
@@ -44,4 +44,4 @@ export function BackLink (props: BackLinkProps) {
 
 }
 
-export default BackLink;
+

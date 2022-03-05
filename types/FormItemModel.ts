@@ -1,6 +1,6 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType, {isFormItemType} from "./FormItemType";
+import { FormItemType, isFormItemType} from "./FormItemType";
 
 export interface FormItemModel {
 
@@ -24,4 +24,4 @@ export function parseFormItemModel (value: any): FormItemModel | undefined {
     return undefined;
 }
 
-export default FormItemModel;
+

@@ -1,12 +1,12 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React, {RefObject} from 'react';
+import { Component, createRef, DragEvent, RefObject } from 'react';
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
+import { LogService } from "../../../core/LogService";
+import { DropEffect } from "./DragManager";
+import { DropCallback, EventCallback } from "../../../core/interfaces/callbacks";
+import { isArray } from "../../../core/modules/lodash";
 import './DropZone.scss';
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import LogService from "../../../core/LogService";
-import {DropEffect} from "./DragManager";
-import {DropCallback, EventCallback} from "../../../core/interfaces/callbacks";
-import {isArray} from "../../../core/modules/lodash";
 
 const LOG = LogService.createLogger('DropZone');
 
@@ -20,13 +20,13 @@ export interface DropZoneProps {
 
 }
 
-export class DropZone extends React.Component<DropZoneProps, DropZoneState> {
+export class DropZone extends Component<DropZoneProps, DropZoneState> {
 
     private readonly _ref                : RefObject<HTMLDivElement>;
-    private readonly _onDropCallback     : EventCallback<React.DragEvent<HTMLDivElement>>;
-    private readonly _onDragOverCallback : EventCallback<React.DragEvent<HTMLDivElement>>;
-    private readonly _onDragEnterCallback : EventCallback<React.DragEvent<HTMLDivElement>>;
-    private readonly _onDragLeaveCallback : EventCallback<React.DragEvent<HTMLDivElement>>;
+    private readonly _onDropCallback     : EventCallback<DragEvent<HTMLDivElement>>;
+    private readonly _onDragOverCallback : EventCallback<DragEvent<HTMLDivElement>>;
+    private readonly _onDragEnterCallback : EventCallback<DragEvent<HTMLDivElement>>;
+    private readonly _onDragLeaveCallback : EventCallback<DragEvent<HTMLDivElement>>;
 
     constructor (props: DropZoneProps) {
 
@@ -36,7 +36,7 @@ export class DropZone extends React.Component<DropZoneProps, DropZoneState> {
             isOver: false
         };
 
-        this._ref = React.createRef<HTMLDivElement>();
+        this._ref = createRef<HTMLDivElement>();
 
         this._onDropCallback     = this._onDrop.bind(this);
         this._onDragOverCallback = this._onDragOver.bind(this);
@@ -75,7 +75,7 @@ export class DropZone extends React.Component<DropZoneProps, DropZoneState> {
 
     }
 
-    private _onDrop (ev : React.DragEvent<HTMLDivElement>) {
+    private _onDrop (ev : DragEvent<HTMLDivElement>) {
 
         LOG.debug('on drop');
 
@@ -103,7 +103,7 @@ export class DropZone extends React.Component<DropZoneProps, DropZoneState> {
 
     }
 
-    private _onDragOver (ev : React.DragEvent<HTMLDivElement>) {
+    private _onDragOver (ev : DragEvent<HTMLDivElement>) {
 
         LOG.debug('on drag over');
 
@@ -116,7 +116,7 @@ export class DropZone extends React.Component<DropZoneProps, DropZoneState> {
 
     }
 
-    private _onDragEnter (ev : React.DragEvent<HTMLDivElement>) {
+    private _onDragEnter (ev : DragEvent<HTMLDivElement>) {
 
         LOG.debug('on drag enter');
 
@@ -126,7 +126,7 @@ export class DropZone extends React.Component<DropZoneProps, DropZoneState> {
 
     }
 
-    private _onDragLeave (ev : React.DragEvent<HTMLDivElement>) {
+    private _onDragLeave (ev : DragEvent<HTMLDivElement>) {
 
         LOG.debug('on drag leave');
 
@@ -149,4 +149,4 @@ export class DropZone extends React.Component<DropZoneProps, DropZoneState> {
 
 }
 
-export default DropZone;
+

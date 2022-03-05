@@ -5,7 +5,7 @@ import {
     isNumberOrUndefined,
     isStringOrUndefined, isUndefined
 } from "../../../core/modules/lodash";
-import FormItemModel from "./FormItemModel";
+import { FormItemModel } from "./FormItemModel";
 import {FormFieldType, isFormFieldType} from "./FormFieldType";
 import { isStyleScheme, StyleScheme } from "../../services/types/StyleScheme";
 
@@ -48,4 +48,4 @@ export function parseFormFieldModel (value: any): FormFieldModel | undefined {
     return undefined;
 }
 
-export default FormFieldModel;
+

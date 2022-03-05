@@ -1,18 +1,18 @@
 // Copyright (c) 2020-2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './SelectField.scss';
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import SelectFieldModel, {SelectFieldItem} from "../../types/items/SelectFieldModel";
-import FieldProps from '../FieldProps';
-import LogService from "../../../../core/LogService";
+import { Component, RefObject, createRef, ChangeEvent, KeyboardEventHandler, KeyboardEvent  } from 'react';
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { SelectFieldModel, SelectFieldItem} from "../../types/items/SelectFieldModel";
+import { FieldProps } from '../FieldProps';
+import { LogService } from "../../../../core/LogService";
 import {findIndex, map, some} from "../../../../core/modules/lodash";
-import Popup from "../../popup/Popup";
+import { Popup } from "../../popup/Popup";
 import {EventCallback, VoidCallback} from "../../../../core/interfaces/callbacks";
-import Button from "../../button/Button";
-import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import ThemeService from "../../../services/ThemeService";
+import { Button } from "../../button/Button";
+import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { ThemeService } from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
+import './SelectField.scss';
 
 const LOG = LogService.createLogger('SelectField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.SELECT_FIELD;
@@ -28,13 +28,13 @@ export interface SelectFieldProps<T> extends FieldProps<SelectFieldModel<T>, T> 
     readonly values : SelectFieldItem<T>[];
 }
 
-export class SelectField extends React.Component<SelectFieldProps<any>, SelectFieldState> {
+export class SelectField extends Component<SelectFieldProps<any>, SelectFieldState> {
 
-    private readonly _inputRef        : React.RefObject<HTMLInputElement>;
+    private readonly _inputRef        : RefObject<HTMLInputElement>;
     private readonly _focusCallback   : VoidCallback;
     private readonly _blurCallback    : VoidCallback;
-    private readonly _keyDownCallback : EventCallback<React.KeyboardEvent>;
-    private readonly _buttonRefs      : React.RefObject<HTMLButtonElement>[];
+    private readonly _keyDownCallback : EventCallback<KeyboardEvent>;
+    private readonly _buttonRefs      : RefObject<HTMLButtonElement>[];
 
     private _fieldState           : FormFieldState;
     private _closeDropdownTimeout : any;
@@ -49,7 +49,7 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
             fieldState   : this._fieldState
         };
         this._buttonRefs = [];
-        this._inputRef = React.createRef();
+        this._inputRef = createRef();
         this._focusCallback = this._onFocus.bind(this);
         this._blurCallback  = this._onBlur.bind(this);
         this._keyDownCallback = this._onKeyDown.bind(this);
@@ -153,7 +153,7 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
                        onChange={(event) => {
                            SelectField._cancelKeyEvent(event);
                        }}
-                       onKeyDown={this._keyDownCallback}
+                       onKeyDown={this._keyDownCallback as KeyboardEventHandler<HTMLInputElement>}
                     />
 
                     {this.props.children}
@@ -169,7 +169,7 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
                             const itemClickCallback = () => this._selectItem(itemIndex);
 
                             if (itemIndex >= this._buttonRefs.length) {
-                                this._buttonRefs[itemIndex] = React.createRef<HTMLButtonElement>();
+                                this._buttonRefs[itemIndex] = createRef<HTMLButtonElement>();
                             }
 
                             const itemButtonRef = this._buttonRefs[itemIndex];
@@ -334,7 +334,7 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
 
         const inputElementHasFocus : boolean = inputElement ? SelectField._elementHasFocus(inputElement) : false;
 
-        return inputElementHasFocus || some(this._buttonRefs, (item: React.RefObject<HTMLButtonElement>) : boolean => {
+        return inputElementHasFocus || some(this._buttonRefs, (item: RefObject<HTMLButtonElement>) : boolean => {
             const currentElement : HTMLButtonElement | null | undefined = item?.current;
             return currentElement ? SelectField._elementHasFocus(currentElement) : false;
         });
@@ -412,7 +412,7 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
         this.setState({dropdownOpen: true});
     }
 
-    private _onKeyDown (event : React.KeyboardEvent) {
+    private _onKeyDown (event : KeyboardEvent) {
 
         LOG.debug(`${this.getIdentifier()}: _onKeyDown: Keycode set: `, event?.code);
         switch(event?.code) {
@@ -567,7 +567,7 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
 
         const currentItem : number | undefined = this._getCurrentIndex();
 
-        const buttonIndex : number = findIndex(this._buttonRefs, (item: React.RefObject<HTMLButtonElement>) : boolean => {
+        const buttonIndex : number = findIndex(this._buttonRefs, (item: RefObject<HTMLButtonElement>) : boolean => {
             const currentElement : HTMLButtonElement | null | undefined = item?.current;
             return currentElement ? SelectField._elementHasFocus(currentElement) : false;
         });
@@ -598,7 +598,7 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
         return el.contains(document.activeElement);
     }
 
-    private static _cancelKeyEvent (event : React.KeyboardEvent | React.ChangeEvent) {
+    private static _cancelKeyEvent (event : KeyboardEvent | ChangeEvent) {
 
         if (event) {
             event.stopPropagation();
@@ -609,4 +609,4 @@ export class SelectField extends React.Component<SelectFieldProps<any>, SelectFi
 
 }
 
-export default SelectField;
+

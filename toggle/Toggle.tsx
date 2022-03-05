@@ -1,10 +1,10 @@
 // Copyright (c) 2020-2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import * as React from "react";
-import "./Toggle.scss";
+import { Component, MouseEvent } from "react";
 import { ToggleOffIcon, ToggleOnIcon } from "./assets";
-import LogService from "../../../core/LogService";
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
+import { LogService } from "../../../core/LogService";
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
+import "./Toggle.scss";
 
 const LOG = LogService.createLogger('Toggle');
 
@@ -21,9 +21,9 @@ export interface ToggleProps {
 export interface ToggleState {
 }
 
-export class Toggle extends React.Component<ToggleProps, ToggleState> {
+export class Toggle extends Component<ToggleProps, ToggleState> {
 
-    private readonly _clickCallback : (e: React.MouseEvent<HTMLDivElement>) => void;
+    private readonly _clickCallback : (e: MouseEvent<HTMLDivElement>) => void;
 
     public static defaultProps: Partial<ToggleProps> = {};
 
@@ -49,7 +49,7 @@ export class Toggle extends React.Component<ToggleProps, ToggleState> {
 
     }
 
-    private _onClick (e: React.MouseEvent<HTMLDivElement>) {
+    private _onClick (e: MouseEvent<HTMLDivElement>) {
 
         if (e) {
             e.preventDefault();
@@ -71,4 +71,4 @@ export class Toggle extends React.Component<ToggleProps, ToggleState> {
 
 }
 
-export default Toggle;
+

@@ -53,4 +53,4 @@ export function parseFormItemType (value: any): FormItemType | undefined {
     return undefined;
 }
 
-export default FormItemType;
+

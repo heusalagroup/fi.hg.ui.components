@@ -1,9 +1,9 @@
-import * as React from "react";
-import "./FormControls.scss";
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
+import { Component } from "react";
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
 import { VoidCallback } from "../../../core/interfaces/callbacks";
-import Button from "../button/Button";
-import LogService from "../../../core/LogService";
+import { Button } from "../button/Button";
+import { LogService } from "../../../core/LogService";
+import "./FormControls.scss";
 
 const LOG = LogService.createLogger('FormControls');
 
@@ -22,7 +22,7 @@ export interface FormControlsState {
 
 }
 
-export class FormControls extends React.Component<FormControlsProps, FormControlsState> {
+export class FormControls extends Component<FormControlsProps, FormControlsState> {
 
     private readonly _cancelCallback : VoidCallback;
     private readonly _submitCallback : VoidCallback;
@@ -107,4 +107,4 @@ export class FormControls extends React.Component<FormControlsProps, FormControl
 
 }
 
-export default FormControls;
+

@@ -31,4 +31,4 @@ export enum UserInterfaceClassName {
 
 }
 
-export default UserInterfaceClassName;
+

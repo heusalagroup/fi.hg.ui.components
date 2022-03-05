@@ -1,10 +1,10 @@
 // Copyright (c) 2022. Heusala Group Oy <info@heusalagroup.fi>. All rights reserved.
 
 import { useLayoutEffect, useRef } from "react";
-import BrowserOnly from "../browserOnly/BrowserOnly";
-import LogService from "../../../../../hg/core/LogService";
+import { BrowserOnly } from "../browserOnly/BrowserOnly";
+import { LogService } from "../../../../../hg/core/LogService";
 import { SCROLL_TO_HERE_DELAY } from "../../../constants/hgFrontend";
-import IfLocation from "../ifLocation/IfLocation";
+import { IfLocation } from "../ifLocation/IfLocation";
 
 const LOG = LogService.createLogger('ScrollToHere');
 
@@ -64,5 +64,3 @@ export function ScrollToHere (props: {path ?: string}) {
     return <BrowserOnly><IfLocation path={props?.path}><BrowserOnlyScrollToHere /></IfLocation></BrowserOnly>;
 
 }
-
-export default ScrollToHere;

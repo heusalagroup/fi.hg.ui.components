@@ -1,15 +1,15 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './TextAreaField.scss';
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import TextAreaFieldModel from "../../types/items/TextAreaFieldModel";
-import FieldProps from '../FieldProps';
-import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import LogService from "../../../../core/LogService";
+import { ChangeEvent, Component } from 'react';
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { TextAreaFieldModel } from "../../types/items/TextAreaFieldModel";
+import { FieldProps } from '../FieldProps';
+import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { LogService } from "../../../../core/LogService";
 import { trim } from "../../../../core/modules/lodash";
-import ThemeService from "../../../services/ThemeService";
+import { ThemeService } from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
+import './TextAreaField.scss';
 
 const LOG = LogService.createLogger('TextAreaField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.TEXT_AREA_FIELD;
@@ -24,10 +24,10 @@ export interface TextAreaFieldProps extends FieldProps<TextAreaFieldModel, strin
 }
 
 export interface OnChangeCallback<T> {
-    (event: React.ChangeEvent<T>): void;
+    (event: ChangeEvent<T>): void;
 }
 
-export class TextAreaField extends React.Component<TextAreaFieldProps, TextAreaFieldState> {
+export class TextAreaField extends Component<TextAreaFieldProps, TextAreaFieldState> {
 
     private readonly _handleChangeCallback : OnChangeCallback<HTMLTextAreaElement>;
 
@@ -229,7 +229,7 @@ export class TextAreaField extends React.Component<TextAreaFieldProps, TextAreaF
         }
     }
 
-    private _onChange (event: React.ChangeEvent<HTMLTextAreaElement>) {
+    private _onChange (event: ChangeEvent<HTMLTextAreaElement>) {
 
         if (event) {
             event.preventDefault();
@@ -252,4 +252,4 @@ export class TextAreaField extends React.Component<TextAreaFieldProps, TextAreaF
 
 }
 
-export default TextAreaField;
+

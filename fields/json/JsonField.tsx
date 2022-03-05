@@ -1,16 +1,16 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './JsonField.scss';
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import JsonFieldModel from "../../types/items/JsonFieldModel";
-import FieldProps from '../FieldProps';
-import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import LogService from "../../../../core/LogService";
+import { ChangeEvent, Component } from 'react';
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { JsonFieldModel } from "../../types/items/JsonFieldModel";
+import { FieldProps } from '../FieldProps';
+import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { LogService } from "../../../../core/LogService";
 import { isEqual, trim } from "../../../../core/modules/lodash";
-import JsonAny, { parseJson, ReadonlyJsonAny } from "../../../../core/Json";
-import ThemeService from "../../../services/ThemeService";
+import { JsonAny,  parseJson, ReadonlyJsonAny } from "../../../../core/Json";
+import { ThemeService } from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
+import './JsonField.scss';
 
 const LOG = LogService.createLogger('JsonField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.JSON_FIELD;
@@ -25,10 +25,10 @@ export interface JsonFieldProps extends FieldProps<JsonFieldModel, JsonAny|Reado
 }
 
 export interface OnChangeCallback<T> {
-    (event: React.ChangeEvent<T>): void;
+    (event: ChangeEvent<T>): void;
 }
 
-export class JsonField extends React.Component<JsonFieldProps, JsonFieldState> {
+export class JsonField extends Component<JsonFieldProps, JsonFieldState> {
 
     private readonly _handleChangeCallback : OnChangeCallback<HTMLTextAreaElement>;
 
@@ -243,7 +243,7 @@ export class JsonField extends React.Component<JsonFieldProps, JsonFieldState> {
         }
     }
 
-    private _onChange (event: React.ChangeEvent<HTMLTextAreaElement>) {
+    private _onChange (event: ChangeEvent<HTMLTextAreaElement>) {
 
         if (event) {
             event.preventDefault();
@@ -267,4 +267,4 @@ export class JsonField extends React.Component<JsonFieldProps, JsonFieldState> {
 
 }
 
-export default JsonField;
+
