@@ -1,6 +1,6 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import { trim } from "../../../../ts/modules/lodash";
+import { trim } from "../../../../core/modules/lodash";
 
 export enum ButtonStyle {
     PRIMARY   = "primary",

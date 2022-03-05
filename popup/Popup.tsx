@@ -3,7 +3,7 @@
 import React from 'react';
 import './Popup.scss';
 import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import LogService from "../../../ts/LogService";
+import LogService from "../../../core/LogService";
 import ReactDOM from 'react-dom';
 
 const LOG = LogService.createLogger('Popup');

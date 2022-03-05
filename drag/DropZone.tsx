@@ -3,10 +3,10 @@
 import React, {RefObject} from 'react';
 import './DropZone.scss';
 import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import LogService from "../../../ts/LogService";
+import LogService from "../../../core/LogService";
 import {DropEffect} from "./DragManager";
-import {DropCallback, EventCallback} from "../../../ts/interfaces/callbacks";
-import {isArray} from "../../../ts/modules/lodash";
+import {DropCallback, EventCallback} from "../../../core/interfaces/callbacks";
+import {isArray} from "../../../core/modules/lodash";
 
 const LOG = LogService.createLogger('DropZone');
 

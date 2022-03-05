@@ -3,7 +3,7 @@
 import React, { Children } from 'react';
 import './Button.scss';
 import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import { EventCallback, VoidCallback } from "../../../ts/interfaces/callbacks";
+import { EventCallback, VoidCallback } from "../../../core/interfaces/callbacks";
 import { stringifyStyleScheme, StyleScheme } from "../../services/types/StyleScheme";
 import ThemeService from "../../services/ThemeService";
 import ButtonType from "./types/ButtonType";

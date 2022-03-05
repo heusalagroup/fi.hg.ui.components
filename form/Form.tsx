@@ -9,11 +9,11 @@ import map from 'lodash/map';
 import Button, { ButtonClickCallback} from "../button/Button";
 import FormUtils from "../fields/FormUtils";
 import { FieldChangeCallback } from "../fields/FieldProps";
-import { every, filter, get, keys, set } from "../../../ts/modules/lodash";
-import LogService from "../../../ts/LogService";
+import { every, filter, get, keys, set } from "../../../core/modules/lodash";
+import LogService from "../../../core/LogService";
 import FormItem from "../types/FormItem";
 import PageBreakModel from "../types/items/PageBreakModel";
-import { VoidCallback } from "../../../ts/interfaces/callbacks";
+import { VoidCallback } from "../../../core/interfaces/callbacks";
 import FormFieldState from "../types/FormFieldState";
 import { ButtonType } from "../button/types/ButtonType";
 

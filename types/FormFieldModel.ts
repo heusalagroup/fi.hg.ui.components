@@ -4,7 +4,7 @@ import {
     isBooleanOrUndefined,
     isNumberOrUndefined,
     isStringOrUndefined, isUndefined
-} from "../../../ts/modules/lodash";
+} from "../../../core/modules/lodash";
 import FormItemModel from "./FormItemModel";
 import {FormFieldType, isFormFieldType} from "./FormFieldType";
 import { isStyleScheme, StyleScheme } from "../../services/types/StyleScheme";

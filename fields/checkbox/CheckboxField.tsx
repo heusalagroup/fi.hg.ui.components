@@ -5,7 +5,7 @@ import './CheckboxField.scss';
 import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
 import CheckboxFieldModel from "../../types/items/CheckboxFieldModel";
 import FieldProps from '../FieldProps';
-import LogService from "../../../../ts/LogService";
+import LogService from "../../../../core/LogService";
 import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
 import ThemeService from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";

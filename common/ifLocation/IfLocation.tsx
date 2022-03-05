@@ -3,7 +3,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-// import LogService from "../../../../nor/ts/LogService";
+// import LogService from "../../../../hg/core/LogService";
 // const LOG = LogService.createLogger('IfLocation');
 
 export interface IfLocationProps {

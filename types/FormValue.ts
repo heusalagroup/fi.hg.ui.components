@@ -1,6 +1,6 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import { isJsonObject, JsonObject } from "../../../ts/Json";
+import { isJsonObject, JsonObject } from "../../../core/Json";
 
 export type FormValue = JsonObject;
 

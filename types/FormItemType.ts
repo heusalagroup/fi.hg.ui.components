@@ -1,6 +1,6 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import {isString} from "../../../ts/modules/lodash";
+import {isString} from "../../../core/modules/lodash";
 
 /**
  * If you add more fields, make sure to update ./FormFieldType.ts also.

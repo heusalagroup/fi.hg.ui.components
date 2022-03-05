@@ -5,7 +5,7 @@ import FormFieldModel, { isFormFieldModel } from "../FormFieldModel";
 import {
     isArrayOf,
     TestCallback
-} from "../../../../ts/modules/lodash";
+} from "../../../../core/modules/lodash";
 
 export interface SelectFieldItem<T> {
 

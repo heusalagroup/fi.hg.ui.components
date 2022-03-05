@@ -3,7 +3,7 @@
 import * as React from "react";
 import "./Toggle.scss";
 import { ToggleOffIcon, ToggleOnIcon } from "./assets";
-import LogService from "../../../ts/LogService";
+import LogService from "../../../core/LogService";
 import UserInterfaceClassName from "../constants/UserInterfaceClassName";
 
 const LOG = LogService.createLogger('Toggle');

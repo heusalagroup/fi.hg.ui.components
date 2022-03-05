@@ -4,7 +4,7 @@ import React, {RefObject} from 'react';
 import './Draggable.scss';
 import UserInterfaceClassName from "../constants/UserInterfaceClassName";
 import {DraggableElementManager} from "./DragManager";
-import LogService from "../../../ts/LogService";
+import LogService from "../../../core/LogService";
 
 const LOG = LogService.createLogger('Draggable');
 

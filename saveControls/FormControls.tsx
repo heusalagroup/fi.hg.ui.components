@@ -1,9 +1,9 @@
 import * as React from "react";
 import "./FormControls.scss";
 import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import { VoidCallback } from "../../../ts/interfaces/callbacks";
+import { VoidCallback } from "../../../core/interfaces/callbacks";
 import Button from "../button/Button";
-import LogService from "../../../ts/LogService";
+import LogService from "../../../core/LogService";
 
 const LOG = LogService.createLogger('FormControls');
 

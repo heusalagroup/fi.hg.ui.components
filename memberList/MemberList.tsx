@@ -1,8 +1,8 @@
 import * as React from "react";
 import "./MemberList.scss";
 import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import RepositoryMember from "../../../ts/simpleRepository/types/RepositoryMember";
-import { map } from "../../../ts/modules/lodash";
+import RepositoryMember from "../../../core/simpleRepository/types/RepositoryMember";
+import { map } from "../../../core/modules/lodash";
 
 export interface MemberListProps {
     readonly className ?: string;

@@ -9,10 +9,10 @@ import ModalService, {
     ModalServiceDestructor,
     ModalServiceEvent
 } from "../../services/ModalService";
-import LogService from "../../../ts/LogService";
-import { map } from "../../../ts/modules/lodash";
+import LogService from "../../../core/LogService";
+import { map } from "../../../core/modules/lodash";
 import ModalContainer from "./ModalContainer";
-import { ChangeCallback } from "../../../ts/interfaces/callbacks";
+import { ChangeCallback } from "../../../core/interfaces/callbacks";
 
 const LOG = LogService.createLogger('ModalGroupContainer');
 

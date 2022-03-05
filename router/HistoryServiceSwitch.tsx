@@ -4,7 +4,7 @@ import REACT_ROUTER_DOM from "react-router-dom";
 import * as React from "react";
 import { useCallback, useEffect } from "react";
 import RouteService, { RouteServiceEvent } from "../../services/RouteService";
-import LogService from "../../../ts/LogService";
+import LogService from "../../../core/LogService";
 
 const LOG = LogService.createLogger('HistoryServiceSwitch');
 

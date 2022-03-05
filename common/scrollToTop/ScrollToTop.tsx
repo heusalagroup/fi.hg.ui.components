@@ -2,7 +2,7 @@
 
 import { useLayoutEffect } from "react";
 import BrowserOnly from "../browserOnly/BrowserOnly";
-import LogService from "../../../../../nor/ts/LogService";
+import LogService from "../../../../../hg/core/LogService";
 
 const LOG = LogService.createLogger('ScrollToTop');
 

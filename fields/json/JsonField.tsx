@@ -6,9 +6,9 @@ import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
 import JsonFieldModel from "../../types/items/JsonFieldModel";
 import FieldProps from '../FieldProps';
 import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import LogService from "../../../../ts/LogService";
-import { isEqual, trim } from "../../../../ts/modules/lodash";
-import JsonAny, { parseJson, ReadonlyJsonAny } from "../../../../ts/Json";
+import LogService from "../../../../core/LogService";
+import { isEqual, trim } from "../../../../core/modules/lodash";
+import JsonAny, { parseJson, ReadonlyJsonAny } from "../../../../core/Json";
 import ThemeService from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
 

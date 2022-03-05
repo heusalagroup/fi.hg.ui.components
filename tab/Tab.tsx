@@ -5,9 +5,9 @@ import './Tab.scss';
 import UserInterfaceClassName from "../constants/UserInterfaceClassName";
 import {SelectFieldItem} from "../types/items/SelectFieldModel";
 import Button from "../button/Button";
-import {map} from "../../../ts/modules/lodash";
-import {ChangeCallback} from "../../../ts/interfaces/callbacks";
-import LogService from "../../../ts/LogService";
+import {map} from "../../../core/modules/lodash";
+import {ChangeCallback} from "../../../core/interfaces/callbacks";
+import LogService from "../../../core/LogService";
 
 const LOG = LogService.createLogger('Tab');
 

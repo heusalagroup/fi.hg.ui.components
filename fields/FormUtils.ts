@@ -9,7 +9,7 @@ import {isCheckboxFieldModel} from "../types/items/CheckboxFieldModel";
 import CheckboxField from "./checkbox/CheckboxField";
 import FormItem from "../types/FormItem";
 import PageBreakModel, {isPageBreakModel} from "../types/items/PageBreakModel";
-import {filter, find} from "../../../ts/modules/lodash";
+import {filter, find} from "../../../core/modules/lodash";
 import FormItemType from "../types/FormItemType";
 import TextAreaField from "./textArea/TextAreaField";
 import {isTextAreaFieldModel} from "../types/items/TextAreaFieldModel";

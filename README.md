@@ -1,10 +1,10 @@
-# @sendanor/ui-components
+# @heusalagroup/fi.hg.ui.components
 
 Our enterprise library for ReactJS UI elements.
 
 We will release our UI related components here as compile style library.
 
-For now this repository is mostly for [issue tracking](https://github.com/sendanor/ui/issues) and demo purposes.
+For now this repository is mostly for [issue tracking](https://github.com/heusalagroup/fi.hg.ui/issues) and demo purposes.
 
 ### It's MIT licenced
 
@@ -12,14 +12,14 @@ For now this repository is mostly for [issue tracking](https://github.com/sendan
 
 This library expects some of our libraries to exist in relative paths:
 
- * [@sendanor/typescript](https://github.com/sendanor/typescript) to be located in the relative path `../../ts`
- * [@sendanor/ui-services](https://github.com/sendanor/ui-services) to be located in the relative path `../services`
+ * [@heusalagroup/fi.hg.core](https://github.com/heusalagroup/fi.hg.core) to be located in the relative path `../../ts`
+ * [@heusalagroup/fi.hg.ui.services](https://github.com/heusalagroup/fi.hg.ui.services) to be located in the relative path `../services`
 
 The only 3rd party dependency we have is for [Lodash library](https://lodash.com/).
 
 ### It's well tested
 
-Our unit tests exists beside the code. To run tests, check out our test repository [@sendanor/test](https://github.com/sendanor/test).
+Our unit tests exists beside the code. To run tests, check out our test repository [@heusalagroup/fi.hg.test](https://github.com/heusalagroup/fi.hg.test).
 
 ### We don't have traditional releases
 
@@ -31,19 +31,19 @@ in a NodeJS or webpack project.
 Recommended way to initialize your project is like this:
 
 ```
-mkdir -p src/fi/nor/ui
+mkdir -p src/fi/hg/ui
 
-git submodule add git@github.com:sendanor/typescript.git src/fi/nor/ts
-git config -f .gitmodules submodule.src/fi/nor/ts.branch main
+git submodule add git@github.com:heusalagroup/fi.hg.core.git src/fi/hg/ts
+git config -f .gitmodules submodule.src/fi/hg/ts.branch main
 
-git submodule add git@github.com:sendanor/ui-services.git src/fi/nor/ui/services
-git config -f .gitmodules submodule.src/fi/nor/ui/services.branch main
+git submodule add git@github.com:heusalagroup/fi.hg.ui.services.git src/fi/hg/ui/services
+git config -f .gitmodules submodule.src/fi/hg/ui/services.branch main
 
-git submodule add git@github.com:sendanor/ui-styles.git src/fi/nor/ui/styles
-git config -f .gitmodules submodule.src/fi/nor/ui/styles.branch main
+git submodule add git@github.com:heusalagroup/fi.hg.ui.styles.git src/fi/hg/ui/styles
+git config -f .gitmodules submodule.src/fi/hg/ui/styles.branch main
 
-git submodule add git@github.com:sendanor/ui-components.git src/fi/nor/ui/components
-git config -f .gitmodules submodule.src/fi/nor/ui/components.branch main
+git submodule add git@github.com:heusalagroup/fi.hg.ui.components.git src/fi/hg/ui/components
+git config -f .gitmodules submodule.src/fi/hg/ui/components.branch main
 ```
 
 Only required dependency is to [the Lodash library](https://lodash.com/):

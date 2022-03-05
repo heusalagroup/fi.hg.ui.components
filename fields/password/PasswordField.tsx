@@ -6,8 +6,8 @@ import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
 import PasswordFieldModel from "../../types/items/PasswordFieldModel";
 import FieldProps from '../FieldProps';
 import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import LogService from "../../../../ts/LogService";
-import { trim } from "../../../../ts/modules/lodash";
+import LogService from "../../../../core/LogService";
+import { trim } from "../../../../core/modules/lodash";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
 import ThemeService from "../../../services/ThemeService";
 

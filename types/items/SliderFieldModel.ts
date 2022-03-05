@@ -5,7 +5,7 @@ import FormFieldModel, { isFormFieldModel } from "../FormFieldModel";
 import {
     isArrayOf,
     TestCallback
-} from "../../../../ts/modules/lodash";
+} from "../../../../core/modules/lodash";
 import { SelectFieldItem } from "./SelectFieldModel";
 
 export interface SliderFieldModel<T> extends FormFieldModel {

@@ -1,7 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import Observer, {ObserverCallback, ObserverDestructor} from "../../../ts/Observer";
-import LogService from "../../../ts/LogService";
+import Observer, {ObserverCallback, ObserverDestructor} from "../../../core/Observer";
+import LogService from "../../../core/LogService";
 
 const LOG = LogService.createLogger('DragManager');
 

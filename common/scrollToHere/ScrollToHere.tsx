@@ -2,7 +2,7 @@
 
 import { useLayoutEffect, useRef } from "react";
 import BrowserOnly from "../browserOnly/BrowserOnly";
-import LogService from "../../../../../nor/ts/LogService";
+import LogService from "../../../../../hg/core/LogService";
 import { SCROLL_TO_HERE_DELAY } from "../../../constants/hgFrontend";
 import IfLocation from "../ifLocation/IfLocation";
 
