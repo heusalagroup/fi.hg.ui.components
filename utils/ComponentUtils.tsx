@@ -91,5 +91,3 @@ export class ComponentUtils {
     }
 
 }
-
-export default ComponentUtils;
