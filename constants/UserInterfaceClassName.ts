@@ -12,6 +12,7 @@ export enum UserInterfaceClassName {
     SELECT_FIELD       = "select-field",
     SLIDER_FIELD       = "slider-field",
     TEXT_FIELD         = "text-field",
+    COUNTRY_FIELD      = "country-field",
     PASSWORD_FIELD     = "password-field",
     EMAIL_FIELD        = "email-field",
     JSON_FIELD         = "json-field",
