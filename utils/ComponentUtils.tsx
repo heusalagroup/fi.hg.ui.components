@@ -18,6 +18,21 @@ export interface ComponentNodeMap {
 
 export class ComponentUtils {
 
+    public static splitWithLineBreaks (content: string) : ReactNode {
+        const blocks = content.split('\n');
+        return (
+            <>{map(blocks, (block: string, index: number) : ReactNode => {
+                return (
+                    <span key={`line-${index}`}>
+                        { index !== 0 ? <br /> : null }
+                        {block}
+                    </span>
+                );
+            })}</>
+        )
+
+    }
+
     public static prepareParagraphNodes (
         t: TFunction,
         description: any[] | undefined,
