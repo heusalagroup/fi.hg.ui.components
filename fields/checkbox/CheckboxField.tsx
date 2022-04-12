@@ -1,14 +1,14 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './CheckboxField.scss';
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import CheckboxFieldModel from "../../types/items/CheckboxFieldModel";
-import FieldProps from '../FieldProps';
-import LogService from "../../../../core/LogService";
-import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import ThemeService from "../../../services/ThemeService";
+import { Component , MouseEvent, ChangeEvent, RefObject , createRef } from 'react';
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { CheckboxFieldModel } from "../../types/items/CheckboxFieldModel";
+import { FieldProps } from '../FieldProps';
+import { LogService } from "../../../../core/LogService";
+import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { ThemeService } from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
+import './CheckboxField.scss';
 
 const LOG = LogService.createLogger('CheckboxField');
 
@@ -22,18 +22,18 @@ export interface CheckboxFieldProps extends FieldProps<CheckboxFieldModel, boole
 }
 
 export interface OnChangeCallback<T> {
-    (event: React.ChangeEvent<T>) : void;
+    (event: ChangeEvent<T>) : void;
 }
 
 export interface OnMouseCallback<T> {
-    (event: React.MouseEvent<T>) : void;
+    (event: MouseEvent<T>) : void;
 }
 
-export class CheckboxField extends React.Component<CheckboxFieldProps, CheckboxFieldState> {
+export class CheckboxField extends Component<CheckboxFieldProps, CheckboxFieldState> {
 
     private readonly _toggleCallback       : OnMouseCallback<HTMLLabelElement>;
     private readonly _handleChangeCallback : OnChangeCallback<HTMLInputElement>;
-    private readonly _inputRef             : React.RefObject<HTMLInputElement>;
+    private readonly _inputRef             : RefObject<HTMLInputElement>;
 
     private _fieldState : FormFieldState;
 
@@ -51,7 +51,7 @@ export class CheckboxField extends React.Component<CheckboxFieldProps, CheckboxF
 
         this._handleChangeCallback = this._onChange.bind(this);
         this._toggleCallback       = this._onToggleValue.bind(this);
-        this._inputRef             = React.createRef();
+        this._inputRef             = createRef();
 
     }
 
@@ -187,7 +187,7 @@ export class CheckboxField extends React.Component<CheckboxFieldProps, CheckboxF
         }
     }
 
-    private _onChange (event: React.ChangeEvent<HTMLInputElement>) {
+    private _onChange (event: ChangeEvent<HTMLInputElement>) {
 
         if (event) {
             event.preventDefault();
@@ -200,7 +200,7 @@ export class CheckboxField extends React.Component<CheckboxFieldProps, CheckboxF
 
     }
 
-    private _onToggleValue (event: React.MouseEvent<HTMLLabelElement>) {
+    private _onToggleValue (event: MouseEvent<HTMLLabelElement>) {
 
         if (event) {
             event.preventDefault();
@@ -261,4 +261,4 @@ export class CheckboxField extends React.Component<CheckboxFieldProps, CheckboxF
 
 }
 
-export default CheckboxField;
+

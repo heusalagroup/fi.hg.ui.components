@@ -1,7 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormFieldModel, {isFormFieldModel} from "./FormFieldModel";
-import PageBreakModel, {isPageBreakModel} from "./items/PageBreakModel";
+import { FormFieldModel, isFormFieldModel} from "./FormFieldModel";
+import { PageBreakModel, isPageBreakModel} from "./items/PageBreakModel";
 
 export type FormItem = FormFieldModel | PageBreakModel;
 
@@ -22,4 +22,4 @@ export function parseFormItem (value: any): FormItem | undefined {
     return undefined;
 }
 
-export default FormItem;
+

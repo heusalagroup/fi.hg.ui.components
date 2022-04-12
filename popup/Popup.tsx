@@ -1,10 +1,10 @@
 // Copyright (c) 2020-2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
+import { Component , RefObject , createRef } from 'react';
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
+import { LogService } from "../../../core/LogService";
+import { createPortal } from 'react-dom';
 import './Popup.scss';
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import LogService from "../../../core/LogService";
-import ReactDOM from 'react-dom';
 
 const LOG = LogService.createLogger('Popup');
 
@@ -37,9 +37,9 @@ export interface PopupState {
     height    : number | undefined;
 }
 
-export class Popup extends React.Component<PopupProps, PopupState> {
+export class Popup extends Component<PopupProps, PopupState> {
 
-    private readonly _ref                  : React.RefObject<HTMLDivElement>;
+    private readonly _ref                  : RefObject<HTMLDivElement>;
 
     private _portal : undefined;
 
@@ -63,7 +63,7 @@ export class Popup extends React.Component<PopupProps, PopupState> {
 
         this._portal = undefined;
 
-        this._ref = React.createRef<HTMLDivElement>();
+        this._ref = createRef<HTMLDivElement>();
 
     }
 
@@ -84,7 +84,7 @@ export class Popup extends React.Component<PopupProps, PopupState> {
         if (!this.props.open) return null;
 
         if (this.props.target) {
-            return ReactDOM.createPortal((
+            return createPortal((
                 <div className={UserInterfaceClassName.POPUP+'-window'}>{this.props.children}</div>
             ), this.props.target);
         } else {
@@ -172,4 +172,4 @@ export class Popup extends React.Component<PopupProps, PopupState> {
 
 }
 
-export default Popup;
+

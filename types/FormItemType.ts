@@ -9,6 +9,7 @@ export enum FormItemType {
 
     // Fields
     TEXT_FIELD       = "text-field",
+    COUNTRY_FIELD    = "text-field",
     PASSWORD_FIELD   = "password-field",
     EMAIL_FIELD      = "email-field",
     SELECT_FIELD     = "select-field",
@@ -30,6 +31,7 @@ export function isFormItemType (value: any) : value is FormItemType {
     switch (value) {
 
         case FormItemType.TEXT_FIELD:
+        case FormItemType.COUNTRY_FIELD:
         case FormItemType.PASSWORD_FIELD:
         case FormItemType.EMAIL_FIELD:
         case FormItemType.CHECKBOX_FIELD:
@@ -53,4 +55,4 @@ export function parseFormItemType (value: any): FormItemType | undefined {
     return undefined;
 }
 
-export default FormItemType;
+

@@ -1,18 +1,18 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import * as React from "react";
-import "./ModalGroupContainer.scss";
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import Modal from "../../services/types/Modal";
-import ModalService, {
+import { Component } from "react";
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
+import { Modal } from "../../services/types/Modal";
+import { ModalService,
     ModalEventCallback,
     ModalServiceDestructor,
     ModalServiceEvent
 } from "../../services/ModalService";
-import LogService from "../../../core/LogService";
+import { LogService } from "../../../core/LogService";
 import { map } from "../../../core/modules/lodash";
-import ModalContainer from "./ModalContainer";
+import { ModalContainer } from "./ModalContainer";
 import { ChangeCallback } from "../../../core/interfaces/callbacks";
+import "./ModalGroupContainer.scss";
 
 const LOG = LogService.createLogger('ModalGroupContainer');
 
@@ -24,7 +24,7 @@ export interface ModalGroupContainerState {
     readonly modals: readonly Modal[];
 }
 
-export class ModalGroupContainer extends React.Component<ModalGroupContainerProps, ModalGroupContainerState> {
+export class ModalGroupContainer extends Component<ModalGroupContainerProps, ModalGroupContainerState> {
 
     public static defaultProps: Partial<ModalGroupContainerProps> = {};
 
@@ -134,4 +134,4 @@ export class ModalGroupContainer extends React.Component<ModalGroupContainerProp
 
 }
 
-export default ModalGroupContainer;
+

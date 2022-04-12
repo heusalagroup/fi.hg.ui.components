@@ -1,16 +1,16 @@
 // Copyright (c) 2020-2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './SliderField.scss';
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import SelectFieldModel, {SelectFieldItem} from "../../types/items/SelectFieldModel";
-import FieldProps from '../FieldProps';
-import LogService from "../../../../core/LogService";
+import { Component, ChangeEvent } from 'react';
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { SelectFieldModel, SelectFieldItem} from "../../types/items/SelectFieldModel";
+import { FieldProps } from '../FieldProps';
+import { LogService } from "../../../../core/LogService";
 import {find, map} from "../../../../core/modules/lodash";
 import {EventCallback} from "../../../../core/interfaces/callbacks";
-import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import ThemeService from "../../../services/ThemeService";
+import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { ThemeService } from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
+import './SliderField.scss';
 
 const LOG = LogService.createLogger('SliderField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.SLIDER_FIELD;
@@ -28,13 +28,13 @@ export interface SliderFieldProps<T> extends FieldProps<SelectFieldModel<T>, T> 
 
 }
 
-export class SliderField extends React.Component<SliderFieldProps<any>, SliderFieldState> {
+export class SliderField extends Component<SliderFieldProps<any>, SliderFieldState> {
 
     private static _idSequence : number = 0;
 
     private _fieldState : FormFieldState;
     private readonly _id                  : number;
-    private readonly _radioChangeCallback : EventCallback<React.ChangeEvent<HTMLInputElement>>;
+    private readonly _radioChangeCallback : EventCallback<ChangeEvent<HTMLInputElement>>;
 
 
     public constructor (props: SliderFieldProps<any>) {
@@ -345,7 +345,7 @@ export class SliderField extends React.Component<SliderFieldProps<any>, SliderFi
         }
     }
 
-    private _onRadioChange (event : React.ChangeEvent<HTMLInputElement>) {
+    private _onRadioChange (event : ChangeEvent<HTMLInputElement>) {
 
         const valueString = event?.target?.value ?? '';
         LOG.debug(`${this.getIdentifier()}: _onRadioChange: valueString=`, valueString);
@@ -368,4 +368,4 @@ export class SliderField extends React.Component<SliderFieldProps<any>, SliderFi
 
 }
 
-export default SliderField;
+

@@ -1,10 +1,10 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React, {RefObject} from 'react';
+import { Component, createRef, RefObject} from 'react';
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
+import { DraggableElementManager } from "./DragManager";
+import { LogService } from "../../../core/LogService";
 import './Draggable.scss';
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import {DraggableElementManager} from "./DragManager";
-import LogService from "../../../core/LogService";
 
 const LOG = LogService.createLogger('Draggable');
 
@@ -23,7 +23,7 @@ export interface DraggableProps {
 
 }
 
-export class Draggable extends React.Component<DraggableProps, DraggableState> {
+export class Draggable extends Component<DraggableProps, DraggableState> {
 
     private readonly _ref : RefObject<HTMLDivElement>;
     private _manager : DraggableElementManager<HTMLDivElement> | undefined;
@@ -35,7 +35,8 @@ export class Draggable extends React.Component<DraggableProps, DraggableState> {
         this.state = {};
 
         this._manager = undefined;
-        this._ref = React.createRef<HTMLDivElement>();
+        this._ref =
+            createRef<HTMLDivElement>();
 
     }
 
@@ -95,4 +96,4 @@ export class Draggable extends React.Component<DraggableProps, DraggableState> {
 
 }
 
-export default Draggable;
+

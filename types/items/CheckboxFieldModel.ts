@@ -1,7 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType from "../FormItemType";
-import FormFieldModel, { isFormFieldModel } from "../FormFieldModel";
+import { FormItemType } from "../FormItemType";
+import { FormFieldModel,  isFormFieldModel } from "../FormFieldModel";
 
 export interface CheckboxFieldModel extends FormFieldModel {
     readonly type         : FormItemType.CHECKBOX_FIELD;
@@ -21,4 +21,4 @@ export function parseCheckboxFieldModel (value: any): CheckboxFieldModel | undef
     return undefined;
 }
 
-export default CheckboxFieldModel;
+

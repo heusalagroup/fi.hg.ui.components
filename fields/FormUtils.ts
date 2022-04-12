@@ -1,28 +1,28 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import {isTextFieldModel} from "../types/items/TextFieldModel";
-import TextField from "./text/TextField";
-import {isIntegerFieldModel} from "../types/items/IntegerFieldModel";
-import IntegerField from "./integer/IntegerField";
-import FormFieldModel from "../types/FormFieldModel";
-import {isCheckboxFieldModel} from "../types/items/CheckboxFieldModel";
-import CheckboxField from "./checkbox/CheckboxField";
-import FormItem from "../types/FormItem";
-import PageBreakModel, {isPageBreakModel} from "../types/items/PageBreakModel";
-import {filter, find} from "../../../core/modules/lodash";
-import FormItemType from "../types/FormItemType";
-import TextAreaField from "./textArea/TextAreaField";
-import {isTextAreaFieldModel} from "../types/items/TextAreaFieldModel";
-import SelectField from "./select/SelectField";
-import {isSelectFieldModel} from "../types/items/SelectFieldModel";
-import {isPasswordFieldModel} from "../types/items/PasswordFieldModel";
-import PasswordField from "./password/PasswordField";
-import EmailField from "./email/EmailField";
-import {isEmailFieldModel} from "../types/items/EmailFieldModel";
+import { isTextFieldModel} from "../types/items/TextFieldModel";
+import { TextField } from "./text/TextField";
+import { isIntegerFieldModel} from "../types/items/IntegerFieldModel";
+import { IntegerField } from "./integer/IntegerField";
+import { FormFieldModel } from "../types/FormFieldModel";
+import { isCheckboxFieldModel} from "../types/items/CheckboxFieldModel";
+import { CheckboxField } from "./checkbox/CheckboxField";
+import { FormItem } from "../types/FormItem";
+import { PageBreakModel, isPageBreakModel} from "../types/items/PageBreakModel";
+import { filter, find } from "../../../core/modules/lodash";
+import { FormItemType } from "../types/FormItemType";
+import { TextAreaField } from "./textArea/TextAreaField";
+import { isTextAreaFieldModel} from "../types/items/TextAreaFieldModel";
+import { SelectField } from "./select/SelectField";
+import { isSelectFieldModel} from "../types/items/SelectFieldModel";
+import { isPasswordFieldModel} from "../types/items/PasswordFieldModel";
+import { PasswordField } from "./password/PasswordField";
+import { EmailField } from "./email/EmailField";
+import { isEmailFieldModel} from "../types/items/EmailFieldModel";
 import { isSliderFieldModel } from "../types/items/SliderFieldModel";
-import SliderField from "./slider/SliderField";
+import { SliderField } from "./slider/SliderField";
 import { isJsonFieldModel } from "../types/items/JsonFieldModel";
-import JsonField from "./json/JsonField";
+import { JsonField } from "./json/JsonField";
 
 export class FormUtils {
 
@@ -113,4 +113,4 @@ export class FormUtils {
 
 }
 
-export default FormUtils;
+

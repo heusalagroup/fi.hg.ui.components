@@ -1,9 +1,9 @@
 // Copyright (c) 2020-2021 Sendanor. All rights reserved.
 
-import React from "react";
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import "./Loader.scss";
+import { Component } from "react";
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
 import {ReactComponent as LoadingIcon} from "./loading.svg";
+import "./Loader.scss";
 
 export interface LoaderProps {
 
@@ -27,7 +27,7 @@ export interface LoaderState {
 /**
  * Loader component.
  */
-export class Loader extends React.Component<LoaderProps, LoaderState> {
+export class Loader extends Component<LoaderProps, LoaderState> {
 
     static defaultProps : Partial<LoaderProps> = {
 
@@ -98,4 +98,4 @@ export class Loader extends React.Component<LoaderProps, LoaderState> {
 
 }
 
-export default Loader;
+

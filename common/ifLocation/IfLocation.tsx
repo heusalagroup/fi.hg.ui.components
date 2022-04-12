@@ -1,14 +1,14 @@
 // Copyright (c) 2022. Heusala Group Oy <info@heusalagroup.fi>. All rights reserved.
 
-import React from "react";
+import { ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 
-// import LogService from "../../../../hg/core/LogService";
+// import { LogService } from "../../../../hg/core/LogService";
 // const LOG = LogService.createLogger('IfLocation');
 
 export interface IfLocationProps {
     readonly path     ?: string;
-    readonly children  : React.ReactNode;
+    readonly children  : ReactNode;
 }
 
 /**
@@ -23,5 +23,3 @@ export function IfLocation (props: IfLocationProps) {
         <>{targetPath !== undefined && currentPath === targetPath ? props.children : null}</>
     );
 }
-
-export default IfLocation;

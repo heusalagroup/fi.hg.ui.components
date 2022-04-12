@@ -1,7 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType from "../FormItemType";
-import FormFieldModel, { isFormFieldModel } from "../FormFieldModel";
+import { FormItemType } from "../FormItemType";
+import { FormFieldModel,  isFormFieldModel } from "../FormFieldModel";
 
 export interface JsonFieldModel extends FormFieldModel {
     readonly type         : FormItemType.JSON_FIELD;
@@ -23,4 +23,4 @@ export function parseJsonFieldModel (value: any): JsonFieldModel | undefined {
     return undefined;
 }
 
-export default JsonFieldModel;
+

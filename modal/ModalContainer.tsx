@@ -1,15 +1,15 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import * as React from "react";
-import "./ModalContainer.scss";
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import Modal from "../../services/types/Modal";
-import ModalService from "../../services/ModalService";
+import { Component , MouseEvent } from "react";
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
+import { Modal } from "../../services/types/Modal";
+import { ModalService } from "../../services/ModalService";
 import { stringifyModalType } from "../../services/types/ModalType";
 import { ChangeCallback, EventCallback, VoidCallback } from "../../../core/interfaces/callbacks";
-import LogService from "../../../core/LogService";
+import { LogService } from "../../../core/LogService";
 import { stringifyStyleScheme, StyleScheme } from "../../services/types/StyleScheme";
-import ThemeService from "../../services/ThemeService";
+import { ThemeService } from "../../services/ThemeService";
+import "./ModalContainer.scss";
 
 const LOG = LogService.createLogger('ModalContainer');
 
@@ -25,12 +25,12 @@ export interface ModalContainerProps {
 export interface ModalContainerState {
 }
 
-export class ModalContainer extends React.Component<ModalContainerProps, ModalContainerState> {
+export class ModalContainer extends Component<ModalContainerProps, ModalContainerState> {
 
     public static defaultProps: Partial<ModalContainerProps> = {};
 
     private readonly _closeModalCallback  : VoidCallback;
-    private readonly _modalClickCallback  : EventCallback<React.MouseEvent<HTMLDivElement>>;
+    private readonly _modalClickCallback  : EventCallback<MouseEvent<HTMLDivElement>>;
 
     public constructor (props: ModalContainerProps) {
 
@@ -108,7 +108,7 @@ export class ModalContainer extends React.Component<ModalContainerProps, ModalCo
 
     }
 
-    private _onModalClick (event : React.MouseEvent<HTMLDivElement>) {
+    private _onModalClick (event : MouseEvent<HTMLDivElement>) {
 
         if (event) {
             LOG.debug(`_modalClickCallback: default click action cancelled`);
@@ -122,4 +122,4 @@ export class ModalContainer extends React.Component<ModalContainerProps, ModalCo
 
 }
 
-export default ModalContainer;
+

@@ -1,6 +1,6 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType from "./FormItemType";
+import { FormItemType } from "./FormItemType";
 import {isString} from "../../../core/modules/lodash";
 
 export type FormFieldType = (
@@ -48,4 +48,4 @@ export function parseFormFieldType (value: any): FormFieldType | undefined {
     return undefined;
 }
 
-export default FormFieldType;
+

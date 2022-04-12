@@ -1,10 +1,9 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
 import REACT_ROUTER_DOM from "react-router-dom";
-import * as React from "react";
 import { useCallback, useEffect } from "react";
-import RouteService, { RouteServiceEvent } from "../../services/RouteService";
-import LogService from "../../../core/LogService";
+import { RouteService,  RouteServiceEvent } from "../../services/RouteService";
+import { LogService } from "../../../core/LogService";
 
 const LOG = LogService.createLogger('HistoryServiceSwitch');
 
@@ -77,4 +76,4 @@ export function HistoryServiceSwitch (props: {children: any}): any {
 
 }
 
-export default HistoryServiceSwitch;
+

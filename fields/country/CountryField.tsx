@@ -1,46 +1,50 @@
+// Copyright (c) 2022. Heusala Group Oy <info@heusalagroup.fi>. All rights reserved.
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import { ChangeEvent, Component } from 'react';
+import { ChangeEvent , Component } from 'react';
 import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
-import { IntegerFieldModel } from "../../types/items/IntegerFieldModel";
+import { CountryFieldModel } from "../../types/items/CountryFieldModel";
 import { FieldProps } from '../FieldProps';
-import { LogService } from "../../../../core/LogService";
-import { isSafeInteger, trim } from "../../../../core/modules/lodash";
 import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { LogService } from "../../../../core/LogService";
 import { ThemeService } from "../../../services/ThemeService";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
-import './IntegerField.scss';
+import { CountryCode, isCountryCode, parseCountryCode } from "../../../../core/types/CountryCode";
+import { CountryAutoCompleteMapping } from "../../../../core/CountryUtils";
+import './CountryField.scss';
 
-const LOG = LogService.createLogger('IntegerField');
-const DEFAULT_PLACEHOLDER = '123';
-const COMPONENT_CLASS_NAME = UserInterfaceClassName.INTEGER_FIELD;
+const LOG = LogService.createLogger('CountryField');
+const COMPONENT_CLASS_NAME = UserInterfaceClassName.COUNTRY_FIELD;
 const COMPONENT_INPUT_TYPE = "text";
 
-export interface IntegerFieldState {
+export interface CountryFieldState {
     readonly value      : string;
     readonly fieldState : FormFieldState;
 }
 
-export interface IntegerFieldProps extends FieldProps<IntegerFieldModel, number> {
-
+export interface CountryFieldProps extends FieldProps<CountryFieldModel, CountryCode> {
+    readonly autoCompleteValues : CountryAutoCompleteMapping;
 }
 
 export interface OnChangeCallback<T> {
     (event: ChangeEvent<T>): void;
 }
 
-export class IntegerField extends Component<IntegerFieldProps, IntegerFieldState> {
+/**
+ * This component is not implemented yet.
+ */
+export class CountryField extends Component<CountryFieldProps, CountryFieldState> {
+
+    private static _defaultCountryCode : CountryCode = CountryCode.FI;
 
     private readonly _handleChangeCallback : OnChangeCallback<HTMLInputElement>;
-
     private _fieldState : FormFieldState;
 
-
-    public constructor (props: IntegerFieldProps) {
+    public constructor (props: CountryFieldProps) {
         super(props);
         this._fieldState = FormFieldState.CONSTRUCTED;
         this.state = {
-            value      : IntegerField.stringifyValue(props.value),
+            value      : props.value ?? CountryField._defaultCountryCode,
             fieldState : this._fieldState
         };
         this._handleChangeCallback = this._onChange.bind(this);
@@ -62,11 +66,12 @@ export class IntegerField extends Component<IntegerFieldProps, IntegerFieldState
         this._updateValueState();
         this._setFieldState(FormFieldState.MOUNTED);
         this._updateFieldState();
+
     }
 
     public componentDidUpdate (
-        prevProps: Readonly<IntegerFieldProps>,
-        prevState: Readonly<IntegerFieldState>,
+        prevProps: Readonly<CountryFieldProps>,
+        prevState: Readonly<CountryFieldState>,
         snapshot?: any
     ) {
         const valueChanged : boolean = prevProps.value !== this.props.value;
@@ -87,7 +92,7 @@ export class IntegerField extends Component<IntegerFieldProps, IntegerFieldState
     public render () {
 
         const label       = this.props.label       ?? this.props.model?.label;
-        const placeholder = this.props.placeholder ?? this.props.model?.placeholder ?? DEFAULT_PLACEHOLDER;
+        const placeholder = this.props.placeholder ?? this.props.model?.placeholder;
         const fieldState  = stringifyFormFieldState(this._fieldState);
         const styleScheme = this.props?.style ?? ThemeService.getStyleScheme();
 
@@ -124,7 +129,6 @@ export class IntegerField extends Component<IntegerFieldProps, IntegerFieldState
 
     }
 
-
     private _setFieldState (value : FormFieldState) {
 
         this._fieldState = value;
@@ -150,9 +154,7 @@ export class IntegerField extends Component<IntegerFieldProps, IntegerFieldState
         const isValid = this._validateWithStateValue(
             this.state.value,
             this.props.value,
-            this.props?.model?.required ?? false,
-            this.props?.model?.minValue,
-            this.props?.model?.maxValue
+            this.props?.model?.required ?? false
         );
         LOG.debug(`${this.getIdentifier()}: _updateFieldState: isValid: `, isValid);
 
@@ -161,63 +163,42 @@ export class IntegerField extends Component<IntegerFieldProps, IntegerFieldState
     }
 
     private _updateValueState () {
-        const value : string = IntegerField.stringifyValue(this.props?.value);
+        const value : string = this.props?.value ?? '';
         this._setStateValue(value);
     }
 
+    /**
+     *
+     * @param stateValueString
+     * @param propValue
+     * @param required
+     * @private
+     */
     private _validateWithStateValue (
-        stateValueString : string,
-        propValue        : number | undefined,
-        required         : boolean,
-        minValue         : number | undefined,
-        maxValue         : number | undefined
+        stateValueString  : string,
+        propValue         : CountryCode | undefined,
+        required          : boolean
     ) : boolean {
-
         LOG.debug(`${this.getIdentifier()}: _validateWithStateValue: stateValueString = `, stateValueString);
-
-        if ( !this._validateValue(propValue, required, minValue, maxValue) ) {
+        if ( !this._validateValue(propValue, required) ) {
             LOG.debug(`${this.getIdentifier()}: _validateWithStateValue: propValue = `, propValue);
             return false;
         }
-
-        const parsedStateValue : number | undefined = IntegerField.toInteger(stateValueString);
+        const parsedStateValue : CountryCode | undefined = parseCountryCode(stateValueString);
         LOG.debug(`${this.getIdentifier()}: _validateWithStateValue: parsedStateValue = `, parsedStateValue);
-
-        if ( parsedStateValue === undefined && stateValueString.length >= 1 ) {
-            return false;
-        }
-
-        if ( !this._validateValue(parsedStateValue, required, minValue, maxValue) ) {
-            return false;
-        }
-
-        LOG.debug(`${this.getIdentifier()}: _validateWithStateValue: propValue = `, propValue);
-        return parsedStateValue === propValue && (`${propValue ?? ''}` === stateValueString);
-
+        return this._validateValue(parsedStateValue, required);
     }
 
     private _validateValue (
-        internalValue : number | undefined,
-        required      : boolean,
-        minValue      : number | undefined,
-        maxValue      : number | undefined
+        internalValue : CountryCode | undefined,
+        required      : boolean
     ) : boolean {
-
-        LOG.debug(`${this.getIdentifier()}: _validateValue: internalValue = `, internalValue);
-
         if ( internalValue === undefined ) {
-            LOG.debug(`${this.getIdentifier()}: _validateValue: required = `, required);
+            LOG.debug(`${this.getIdentifier()}: _validateValue: required = `, required, internalValue);
             return !required;
         }
-
-        LOG.debug(`${this.getIdentifier()}: _validateValue: minValue = `, minValue);
-        LOG.debug(`${this.getIdentifier()}: _validateValue: maxValue = `, maxValue );
-
-        if (minValue !== undefined && internalValue < minValue) {
-            return false;
-        }
-        return !(maxValue !== undefined && internalValue > maxValue);
-
+        LOG.debug(`${this.getIdentifier()}: _validateValue: internalValue = `, internalValue);
+        return isCountryCode(internalValue);
     }
 
     private _setStateValue (value: string) {
@@ -235,43 +216,19 @@ export class IntegerField extends Component<IntegerFieldProps, IntegerFieldState
             event.stopPropagation();
         }
 
-        const value = event?.target?.value ?? '';
+        const valueString = event?.target?.value;
+        const value : CountryCode | undefined = parseCountryCode( valueString );
 
-        this._setStateValue(value);
+        this._setStateValue(valueString ?? '' );
 
         if (this.props.change) {
             try {
-                this.props.change(IntegerField.toInteger(value));
+                this.props.change(value);
             } catch (err) {
                 LOG.error(`${this.getIdentifier()}: Error: `, err);
             }
         }
 
-    }
-
-
-    public static toInteger (value : string) : number | undefined {
-        try {
-
-            value = trim(value);
-            if (value === '') return undefined;
-
-            const parsedValue = parseInt(value, 10);
-
-            if ( !isSafeInteger(parsedValue) ) {
-                return undefined;
-            }
-
-            return parsedValue;
-
-        } catch (err) {
-            LOG.warn(`Error while parsing string as integer "${value}": `, err);
-            return undefined;
-        }
-    }
-
-    public static stringifyValue (value: number | undefined) : string {
-        return `${value ?? ''}`;
     }
 
 }

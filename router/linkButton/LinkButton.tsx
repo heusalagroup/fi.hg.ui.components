@@ -1,13 +1,13 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import * as React from "react";
-import "./LinkButton.scss";
-import Icon from "../../icon/Icon";
+import { Component } from "react";
+import { Icon } from "../../icon/Icon";
 import { Link } from "react-router-dom";
 import { stringifyStyleScheme, StyleScheme } from "../../../services/types/StyleScheme";
-import ThemeService from "../../../services/ThemeService";
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import ButtonStyle from "../../button/types/ButtonStyle";
+import { ThemeService } from "../../../services/ThemeService";
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { ButtonStyle } from "../../button/types/ButtonStyle";
+import "./LinkButton.scss";
 
 export interface LinkButtonProps {
     readonly className   ?: string;
@@ -23,7 +23,7 @@ export interface LinkButtonProps {
 export interface LinkButtonState {
 }
 
-export class LinkButton extends React.Component<LinkButtonProps, LinkButtonState> {
+export class LinkButton extends Component<LinkButtonProps, LinkButtonState> {
 
     public static defaultProps: Partial<LinkButtonProps> = {};
 
@@ -64,4 +64,4 @@ export class LinkButton extends React.Component<LinkButtonProps, LinkButtonState
 
 }
 
-export default LinkButton;
+

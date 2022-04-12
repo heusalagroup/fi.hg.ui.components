@@ -1,7 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType from "../FormItemType";
-import FormFieldModel, { isFormFieldModel } from "../FormFieldModel";
+import { FormItemType } from "../FormItemType";
+import { FormFieldModel,  isFormFieldModel } from "../FormFieldModel";
 import {
     isArrayOf,
     TestCallback
@@ -41,4 +41,4 @@ export function parseSliderFieldModel<T = any> (value: any): SliderFieldModel<T>
     return undefined;
 }
 
-export default SliderFieldModel;
+

@@ -1,8 +1,8 @@
-import * as React from "react";
-import "./MemberList.scss";
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
-import RepositoryMember from "../../../core/simpleRepository/types/RepositoryMember";
+import { Component } from "react";
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
+import { RepositoryMember } from "../../../core/simpleRepository/types/RepositoryMember";
 import { map } from "../../../core/modules/lodash";
+import "./MemberList.scss";
 
 export interface MemberListProps {
     readonly className ?: string;
@@ -12,7 +12,7 @@ export interface MemberListProps {
 export interface MemberListState {
 }
 
-export class MemberList extends React.Component<MemberListProps, MemberListState> {
+export class MemberList extends Component<MemberListProps, MemberListState> {
 
     public static defaultProps: Partial<MemberListProps> = {};
 
@@ -56,4 +56,4 @@ export class MemberList extends React.Component<MemberListProps, MemberListState
 
 }
 
-export default MemberList;
+

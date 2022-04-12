@@ -1,7 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType from "../FormItemType";
-import FormFieldModel, { isFormFieldModel } from "../FormFieldModel";
+import { FormItemType } from "../FormItemType";
+import { FormFieldModel,  isFormFieldModel } from "../FormFieldModel";
 import {
     isArrayOf,
     TestCallback
@@ -47,4 +47,4 @@ export function parseSelectFieldModel<T = any> (value: any): SelectFieldModel<T>
     return undefined;
 }
 
-export default SelectFieldModel;
+

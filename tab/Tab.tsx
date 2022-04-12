@@ -1,13 +1,13 @@
 // Copyright (c) 2020-2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './Tab.scss';
-import UserInterfaceClassName from "../constants/UserInterfaceClassName";
+import { Component } from 'react';
+import { UserInterfaceClassName } from "../constants/UserInterfaceClassName";
 import {SelectFieldItem} from "../types/items/SelectFieldModel";
-import Button from "../button/Button";
+import { Button } from "../button/Button";
 import {map} from "../../../core/modules/lodash";
 import {ChangeCallback} from "../../../core/interfaces/callbacks";
-import LogService from "../../../core/LogService";
+import { LogService } from "../../../core/LogService";
+import './Tab.scss';
 
 const LOG = LogService.createLogger('Tab');
 
@@ -25,7 +25,7 @@ export interface TabState {
 
 }
 
-export class Tab extends React.Component<TabProps, TabState> {
+export class Tab extends Component<TabProps, TabState> {
 
     static defaultProps : Partial<TabProps> = {
     };
@@ -90,4 +90,4 @@ export class Tab extends React.Component<TabProps, TabState> {
 
 }
 
-export default Tab;
+

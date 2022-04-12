@@ -1,7 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType from "../FormItemType";
-import FormFieldModel, { isFormFieldModel } from "../FormFieldModel";
+import { FormItemType } from "../FormItemType";
+import { FormFieldModel,  isFormFieldModel } from "../FormFieldModel";
 import { isNumberOrUndefined } from "../../../../core/modules/lodash";
 
 export interface IntegerFieldModel extends FormFieldModel {
@@ -31,4 +31,4 @@ export function parseIntegerFieldModel (value: any): IntegerFieldModel | undefin
     return undefined;
 }
 
-export default IntegerFieldModel;
+

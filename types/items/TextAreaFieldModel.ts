@@ -1,7 +1,7 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType from "../FormItemType";
-import FormFieldModel, { isFormFieldModel } from "../FormFieldModel";
+import { FormItemType } from "../FormItemType";
+import { FormFieldModel,  isFormFieldModel } from "../FormFieldModel";
 
 export interface TextAreaFieldModel extends FormFieldModel {
     readonly type         : FormItemType.TEXT_AREA_FIELD;
@@ -23,4 +23,4 @@ export function parseTextAreaFieldModel (value: any): TextAreaFieldModel | undef
     return undefined;
 }
 
-export default TextAreaFieldModel;
+

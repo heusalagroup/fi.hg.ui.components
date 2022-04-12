@@ -1,15 +1,15 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import React from 'react';
-import './PasswordField.scss';
-import UserInterfaceClassName from "../../constants/UserInterfaceClassName";
-import PasswordFieldModel from "../../types/items/PasswordFieldModel";
-import FieldProps from '../FieldProps';
-import FormFieldState, { stringifyFormFieldState } from "../../types/FormFieldState";
-import LogService from "../../../../core/LogService";
+import { ChangeEvent, Component } from 'react';
+import { UserInterfaceClassName } from "../../constants/UserInterfaceClassName";
+import { PasswordFieldModel } from "../../types/items/PasswordFieldModel";
+import { FieldProps } from '../FieldProps';
+import { FormFieldState,  stringifyFormFieldState } from "../../types/FormFieldState";
+import { LogService } from "../../../../core/LogService";
 import { trim } from "../../../../core/modules/lodash";
 import { stringifyStyleScheme } from "../../../services/types/StyleScheme";
-import ThemeService from "../../../services/ThemeService";
+import { ThemeService } from "../../../services/ThemeService";
+import './PasswordField.scss';
 
 const LOG = LogService.createLogger('PasswordField');
 const COMPONENT_CLASS_NAME = UserInterfaceClassName.PASSWORD_FIELD;
@@ -25,10 +25,10 @@ export interface PasswordFieldProps extends FieldProps<PasswordFieldModel, strin
 }
 
 export interface OnChangeCallback<T> {
-    (event: React.ChangeEvent<T>): void;
+    (event: ChangeEvent<T>): void;
 }
 
-export class PasswordField extends React.Component<PasswordFieldProps, PasswordFieldState> {
+export class PasswordField extends Component<PasswordFieldProps, PasswordFieldState> {
 
     private readonly _handleChangeCallback : OnChangeCallback<HTMLInputElement>;
 
@@ -231,7 +231,7 @@ export class PasswordField extends React.Component<PasswordFieldProps, PasswordF
         }
     }
 
-    private _onChange (event: React.ChangeEvent<HTMLInputElement>) {
+    private _onChange (event: ChangeEvent<HTMLInputElement>) {
 
         if (event) {
             event.preventDefault();
@@ -254,4 +254,4 @@ export class PasswordField extends React.Component<PasswordFieldProps, PasswordF
 
 }
 
-export default PasswordField;
+

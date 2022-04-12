@@ -1,8 +1,8 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormItemType from "../FormItemType";
+import { FormItemType } from "../FormItemType";
 import { isStringOrUndefined } from "../../../../core/modules/lodash";
-import FormItemModel from "../FormItemModel";
+import { FormItemModel } from "../FormItemModel";
 
 export interface PageBreakModel extends FormItemModel {
 
@@ -31,4 +31,4 @@ export function parsePageBreakModel (value: any): PageBreakModel | undefined {
     return undefined;
 }
 
-export default PageBreakModel;
+

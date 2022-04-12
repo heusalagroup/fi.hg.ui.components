@@ -1,7 +1,7 @@
 
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
-import FormFieldState from "../types/FormFieldState";
+import { FormFieldState } from "../types/FormFieldState";
 import { StyleScheme } from "../../services/types/StyleScheme";
 
 export interface FieldChangeCallback<T> {
@@ -21,4 +21,4 @@ export interface FieldProps<T, ValueT> {
 
 }
 
-export default FieldProps;
+
