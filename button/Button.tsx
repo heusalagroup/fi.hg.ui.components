@@ -7,44 +7,46 @@ import { stringifyStyleScheme, StyleScheme } from "../../services/types/StyleSch
 import { ThemeService } from "../../services/ThemeService";
 import { ButtonType } from "./types/ButtonType";
 import { ButtonStyle } from "./types/ButtonStyle";
+import { LogService } from "../../../core/LogService";
 import './Button.scss';
+
+const LOG = LogService.createLogger('Button');
 
 export interface ButtonState {
 }
 
 export interface ButtonClickCallback {
-    () : void;
+    (): void;
 }
 
 export interface ButtonProps {
 
-    readonly className   ?: string;
-    readonly themeStyle  ?: StyleScheme;
-    readonly style       ?: ButtonStyle;
-    readonly type         : ButtonType;
-    readonly click        : ButtonClickCallback;
-    readonly focus       ?: VoidCallback;
-    readonly blur        ?: VoidCallback;
-    readonly keyDown     ?: EventCallback<KeyboardEvent>;
-    readonly buttonRef   ?: RefObject<HTMLButtonElement>;
-    readonly enabled     ?: boolean;
+    readonly className?: string;
+    readonly themeStyle?: StyleScheme;
+    readonly style?: ButtonStyle;
+    readonly type: ButtonType;
+    readonly click: ButtonClickCallback;
+    readonly focus?: VoidCallback;
+    readonly blur?: VoidCallback;
+    readonly keyDown?: EventCallback<KeyboardEvent>;
+    readonly buttonRef?: RefObject<HTMLButtonElement>;
+    readonly enabled?: boolean;
 
 }
 
 export interface OnClickCallback<T> {
-    (event: MouseEvent<T>) : void;
+    (event: MouseEvent<T>): void;
 }
 
 export class Button extends Component<ButtonProps, ButtonState> {
 
-    public static defaultProps : Partial<ButtonProps> = {
+    public static defaultProps: Partial<ButtonProps> = {
         type: ButtonType.DEFAULT
     };
 
-    private readonly _handleClickCallback : OnClickCallback<HTMLButtonElement>;
+    private readonly _handleClickCallback: OnClickCallback<HTMLButtonElement>;
 
-
-    public constructor(props: ButtonProps) {
+    public constructor (props: ButtonProps) {
 
         super(props);
 
@@ -58,7 +60,7 @@ export class Button extends Component<ButtonProps, ButtonState> {
 
         const childCount = Children.count(this.props.children);
 
-        const buttonProps : {
+        const buttonProps: {
             onBlur?: any,
             onFocus?: any,
             onKeyDown?: any,
@@ -67,31 +69,31 @@ export class Button extends Component<ButtonProps, ButtonState> {
         } = {};
 
         const blurCallback = this.props?.blur;
-        if (blurCallback) {
+        if ( blurCallback ) {
             buttonProps.onBlur = () => blurCallback();
         }
 
         const focusCallback = this.props?.focus;
-        if (focusCallback) {
+        if ( focusCallback ) {
             buttonProps.onFocus = () => focusCallback();
         }
 
         const buttonRef = this.props?.buttonRef;
-        if (buttonRef) {
+        if ( buttonRef ) {
             buttonProps.ref = buttonRef;
         }
 
         const keyDownCallback = this.props?.keyDown;
-        if (keyDownCallback) {
+        if ( keyDownCallback ) {
             buttonProps.onKeyDown = keyDownCallback;
         }
 
         const enabled = this.props?.enabled ?? true;
-        if (!enabled) {
+        if ( !enabled ) {
             buttonProps.disabled = true;
         }
 
-        const buttonStyle = this.props?.style      ?? ButtonStyle.SECONDARY;
+        const buttonStyle = this.props?.style ?? ButtonStyle.SECONDARY;
         const styleScheme = this.props?.themeStyle ?? ThemeService.getStyleScheme();
 
         return (
@@ -111,20 +113,22 @@ export class Button extends Component<ButtonProps, ButtonState> {
         );
     }
 
-
     private _onClick (event: MouseEvent<HTMLButtonElement>) {
 
-        if (event) {
+        if ( event ) {
             event.preventDefault();
             event.stopPropagation();
         }
 
-        if (this.props.click) {
+        if ( this.props.click ) {
             try {
+                LOG.debug(`Triggering click handler`);
                 this.props.click();
             } catch (err) {
-                console.error('Error in click callback: ', err);
+                LOG.error('Error in click callback: ', err);
             }
+        } else {
+            LOG.warn(`No click handler defined`);
         }
 
     }
