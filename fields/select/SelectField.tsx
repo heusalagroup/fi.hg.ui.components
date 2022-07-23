@@ -25,7 +25,7 @@ export interface SelectFieldState {
 }
 
 export interface SelectFieldProps<T> extends FieldProps<SelectFieldModel<T>, T> {
-    readonly values : SelectFieldItem<T>[];
+    readonly values : readonly SelectFieldItem<T>[];
 }
 
 export class SelectField extends Component<SelectFieldProps<any>, SelectFieldState> {
@@ -109,7 +109,7 @@ export class SelectField extends Component<SelectFieldProps<any>, SelectFieldSta
         const label        : string = this.props?.label          ?? this.props.model?.label       ?? '';
         const placeholder  : string = this.props?.placeholder    ?? this.props.model?.placeholder ?? '';
 
-        const selectItems       : SelectFieldItem<any>[] = this._getValues();
+        const selectItems       : readonly SelectFieldItem<any>[] = this._getValues<any>();
         const currentItemIndex  : number | undefined = this._getCurrentIndex();
         const selectedItem      : SelectFieldItem<any> | undefined = currentItemIndex !== undefined ? selectItems[currentItemIndex] : undefined;
         const selectedItemLabel : string = selectedItem?.label ?? '';
@@ -212,7 +212,7 @@ export class SelectField extends Component<SelectFieldProps<any>, SelectFieldSta
 
         LOG.debug(`${this.getIdentifier()}: _findValueIndex: value: `, value);
 
-        const items : SelectFieldItem<any>[] = this._getValues();
+        const items : readonly SelectFieldItem<any>[] = this._getValues<any>();
         LOG.debug(`${this.getIdentifier()}: _findValueIndex: items: `, items);
 
         const index : number = findIndex(
@@ -278,7 +278,7 @@ export class SelectField extends Component<SelectFieldProps<any>, SelectFieldSta
         }
 
         const values = map(
-            this._getValues(),
+            this._getValues<any>(),
             (item : SelectFieldItem<any>) : any => item.value
         );
 
@@ -310,7 +310,7 @@ export class SelectField extends Component<SelectFieldProps<any>, SelectFieldSta
 
         LOG.debug(`${this.getIdentifier()}: _selectItem: Selecting index `, index);
 
-        const selectItems : SelectFieldItem<any>[] = this._getValues();
+        const selectItems : readonly SelectFieldItem<any>[] = this._getValues<any>();
         if ( index >= 0 && index < selectItems.length ) {
             this._change(selectItems[index].value);
             this._closeDropdown();
@@ -320,7 +320,7 @@ export class SelectField extends Component<SelectFieldProps<any>, SelectFieldSta
 
     }
 
-    private _getValues () : SelectFieldItem<any>[] {
+    private _getValues<T> () : readonly SelectFieldItem<T>[] {
         return this.props?.values ?? this.props?.model?.values ?? [];
     }
 
@@ -496,7 +496,7 @@ export class SelectField extends Component<SelectFieldProps<any>, SelectFieldSta
 
     private _moveCurrentItemTo (nextItem: number) {
 
-        const items      : SelectFieldItem<any>[] = this._getValues();
+        const items      : readonly SelectFieldItem<any>[] = this._getValues<any>();
         const totalItems : number                 = items.length;
 
         if ( !(nextItem >= 0 && nextItem < totalItems) ) {
@@ -514,7 +514,7 @@ export class SelectField extends Component<SelectFieldProps<any>, SelectFieldSta
 
     private _movePrevItem () {
 
-        const items            : SelectFieldItem<any>[] = this._getValues();
+        const items            : readonly SelectFieldItem<any>[] = this._getValues();
         const totalItems       : number                 = items.length;
         const currentItem      : number | undefined     = this._getCurrentIndex();
         const nextItem         : number = currentItem !== undefined ? currentItem - 1 : totalItems - 1;
@@ -535,7 +535,7 @@ export class SelectField extends Component<SelectFieldProps<any>, SelectFieldSta
 
     private _moveNextItem () {
 
-        const items            : SelectFieldItem<any>[] = this._getValues();
+        const items            : readonly SelectFieldItem<any>[] = this._getValues<any>();
         const totalItems       : number                 = items.length;
         const currentItem      : number | undefined     = this._getCurrentIndex();
 
@@ -563,7 +563,7 @@ export class SelectField extends Component<SelectFieldProps<any>, SelectFieldSta
             return;
         }
 
-        const items : SelectFieldItem<any>[] = this._getValues();
+        const items : readonly SelectFieldItem<any>[] = this._getValues<any>();
 
         const currentItem : number | undefined = this._getCurrentIndex();
 

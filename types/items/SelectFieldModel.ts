@@ -1,24 +1,33 @@
 // Copyright (c) 2021. Sendanor <info@sendanor.fi>. All rights reserved.
 
 import { FormItemType } from "../FormItemType";
-import { FormFieldModel,  isFormFieldModel } from "../FormFieldModel";
+import {
+    FormFieldModel,
+    isFormFieldModel
+} from "../FormFieldModel";
 import {
     isArrayOf,
     TestCallback
 } from "../../../../core/modules/lodash";
 
 export interface SelectFieldItem<T> {
-
     readonly label : string;
     readonly value : T;
+}
 
+export function createSelectFieldItem<T>(
+    label: string,
+    value: T
+) : SelectFieldItem<T> {
+    return {
+        label,
+        value
+    }
 }
 
 export interface SelectFieldModel<T> extends FormFieldModel {
-
     readonly type   : FormItemType.SELECT_FIELD;
     readonly values : SelectFieldItem<T>[];
-
 }
 
 export function isSelectFieldModel<T = any> (
